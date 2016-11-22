@@ -37,9 +37,20 @@ gem 'autoprefixer-rails'
 
 gem 'haml', '~> 4.0.5'
 
+gem 'rspec-rails', '~> 3.5'
+
+gem 'faker'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'factory_girl_rails', '~> 4.7'
+end
+
+group :test do
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
 end
 
 group :development do
