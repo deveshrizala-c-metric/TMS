@@ -7,6 +7,40 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+
+    / %p.notice= notice
+    / %p.alert= alert
+    / = yield
+
+    #container
+      #header
+        .pull-right.flush-right
+          %p
+            Guest User |
+            - if current_user
+              = link_to 'Sign out', destroy_user_session_path , :method => :delete, class: 'button'
+            - else
+              = link_to 'Sign in',  new_user_session_path
+          %p
+
+        %a#logo.pull-left{:href => "/helpdesk/index.php", :title => "Support Center"}
+          %span.valign-helper
+          %img{:alt => "c-metric", :border => "0", :src => "/helpdesk/logo.php"}
+      .clear
+      %ul#nav.flush-left
+        %li
+          %a.active.glyphicon.glyphicon-home{:href => "/home"} Support Center Home
+        %li
+          %a.new.glyphicon.glyphicon-tag{:href => ""} Open a New Ticket
+        %li
+          %a.status.glyphicon.glyphicon-bookmark{:href => ""} Check Ticket Status
+
+      #content
+        .row
+        - flash.each do |name, msg|
+          = content_tag :div, msg, class: "alert alert-#{name}"
+        = yield
+
+    #footer
+      %p Copyright © 2016 c-metric - All rights reserved.
+      / %a#poweredBy{:href => "http://osticket.com", :target => "_blank"} Helpdesk software - powered by osTicket
