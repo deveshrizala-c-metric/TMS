@@ -1,0 +1,21 @@
+%h1 Tickets
+%br
+.row
+  .col-md-2
+    %strong Ticket No.
+  .col-md-2
+    %strong Issue Summary
+  .col-md-8
+
+- @tickets.each do |ticket|
+  %br/
+  .row
+    .col-md-2
+      = ticket.id
+    .col-md-2
+      = ticket.issue_summary.name
+    .col-md-8
+      = link_to ticket, class: 'btn btn-info button' do
+        %i.glyphicon.glyphicon-eye-open Show
+      = link_to ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger button' do
+        %i.glyphicon.glyphicon-remove Delete

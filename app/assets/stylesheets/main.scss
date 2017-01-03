@@ -1,5 +1,5 @@
 body {
-  background-color: #c8c8c8;
+  background-color: #323232;
   color: #000;
   font-size: 13px;
   line-height: 1.231;
@@ -21,15 +21,16 @@ p {
 a {
   display: inline-block;
   width: auto;
-  height: 17px;
+  height: auto !important;
   line-height: 20px;
   text-align: center;
   margin-left: 10px;
   border-radius: 20px;
+  color: #003EFF;
 }
 
 h1 {
-  color: #00aeef;
+  color: #0000CD;
   font-size: 20px;
   font-weight: normal;
 }
@@ -39,8 +40,18 @@ h1, h2, h3, h4, h5, h6, form, fieldset {
   padding: 0;
 }
 
+hr{
+  border-color: #ccc -moz-use-text-color -moz-use-text-color;
+  border-image: none;
+  border-style: solid none none;
+  border-width: 1px 0 0;
+  display: block;
+  height: 1px;
+  padding: 0;
+}
+
 #container{
-  background: #fff;
+  background: #c8c8c8;
   width: 840px;
   margin-right: auto;
   margin-left: auto;
@@ -52,22 +63,6 @@ h1, h2, h3, h4, h5, h6, form, fieldset {
   height: 71px;
   padding-right: 20px;
   padding-left: 20px;
-}
-
-#nav{
-  margin-right: 20px;
-  margin-left: 20px;
-  padding-top: 2px;
-  padding-right: 10px;
-  padding-bottom: 2px;
-  padding-left: 10px;
-  height: 25px;
-  border-top: 1px solid #aaa;
-  border-top-width: 1px;
-  border-top-style: solid;
-  border-top-color: rgb(170, 170, 170);
-  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.4);
-  background-color: #00aeef;
 }
 
 #content {
@@ -91,7 +86,26 @@ h1, h2, h3, h4, h5, h6, form, fieldset {
 #footer {
   text-align: center;
   font-size: 11px;
-  color: #333;
+  color: #fff;
+}
+
+.navbar-inverse {
+  background-color: #222;
+  border-color: #090909;
+}
+
+a:hover{
+  color: #003EFF;
+  font-weight: bold;
+}
+
+a.cus-navbar{
+  border-radius: 0;
+  margin-left: 0;
+}
+
+.dropdown-menu a {
+  text-align: left !important;
 }
 
 .active{
@@ -115,12 +129,6 @@ h1, h2, h3, h4, h5, h6, form, fieldset {
     text-align: left;
 }
 
-.login-box {
-  box-shadow: 12px 0 15px -15px rgba(0, 0, 0, 0.4);
-  display: table-cell;
-  padding: 15px;
-}
-
 .clear {
   clear: both;
   height: 1px;
@@ -128,13 +136,7 @@ h1, h2, h3, h4, h5, h6, form, fieldset {
 
 .button
 {
-  width: 80px;
   height: 30px;
-  background: #00aeef;
-  padding: 4px;
-  text-align: center;
-  border-radius: 5px;
-  color: white;
 }
 
 .button:hover{

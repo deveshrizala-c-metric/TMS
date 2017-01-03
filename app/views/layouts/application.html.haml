@@ -14,26 +14,53 @@
 
     #container
       #header
-        .pull-right.flush-right
-          %p
-            Guest User |
-            - if current_user
-              = link_to 'Sign out', destroy_user_session_path , :method => :delete, class: 'button'
-            - else
-              = link_to 'Sign in',  new_user_session_path
-          %p
-
         %a#logo.pull-left{:href => "/helpdesk/index.php", :title => "Support Center"}
           %span.valign-helper
           %img{:alt => "c-metric", :border => "0", :src => "/helpdesk/logo.php"}
       .clear
-      %ul#nav.flush-left
-        %li
-          %a.active.glyphicon.glyphicon-home{:href => "/home"} Support Center Home
-        %li
-          %a.new.glyphicon.glyphicon-tag{:href => ""} Open a New Ticket
-        %li
-          %a.status.glyphicon.glyphicon-bookmark{:href => ""} Check Ticket Status
+      %nav.navbar.navbar-inverse
+        .container-fluid
+          / Brand and toggle get grouped for better mobile display
+          .navbar-header
+            %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+              %span.sr-only Toggle navigation
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.navbar-brand{:href => "#"} C-Metric
+          / Collect the nav links, forms, and other content for toggling
+          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            %ul.nav.navbar-nav
+              %li.active
+                %a.cus-navbar{:href => "/home"} Home
+              %li.dropdown
+                %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                  Tikcets
+                  %span.caret
+                %ul.dropdown-menu
+                  %li
+                    %a{:href => "/tickets"} Tickets
+                    %li.divider{:role => "separator"}
+                  %li
+                    %a{:href => "/tickets/new"} New Ticket
+              %li
+                %a.cus-navbar{:href => "#"} Check Status
+            %ul.nav.navbar-nav.navbar-right
+              %li.dropdown
+                - if current_user
+                  %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                    = current_user.fullname
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => "/users/edit"} Profile
+                    %li.divider{:role => "separator"}
+                    %li
+                      = link_to 'Sign out', destroy_user_session_path , :method => :delete
+                - else
+                  %a{:href => "/users/sign_in"} Sign in
+          / /.navbar-collapse
+        / /.container-fluid
 
       #content
         .row
@@ -42,5 +69,5 @@
         = yield
 
     #footer
-      %p Copyright © 2016 c-metric - All rights reserved.
+      %p Copyright © 2016 C-Metric - All rights reserved.
       / %a#poweredBy{:href => "http://osticket.com", :target => "_blank"} Helpdesk software - powered by osTicket

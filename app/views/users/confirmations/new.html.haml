@@ -1,10 +1,13 @@
-%h2 Resend confirmation instructions
-= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+%h1 Resend confirmation instructions
+%br
+= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, :id => "clientLogin" }) do |f|
   = devise_error_messages!
   .field
     = f.label :email
     %br/
     = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
+  %br/
   .actions
-    = f.submit "Resend confirmation instructions"
-= render "users/shared/links"
+    = f.submit "Resend confirmation instructions", class: 'btn btn-primary'
+  %p
+    = render "users/shared/links"

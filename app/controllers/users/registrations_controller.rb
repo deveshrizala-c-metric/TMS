@@ -41,7 +41,11 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:fullname,:phone])
+    if params[:action] == 'update'
+      devise_parameter_sanitizer.permit(:account_update, keys: [:fullname,:phone])
+    elsif params[:action] == 'create'
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:fullname,:phone])
+    end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -60,6 +64,12 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   # end
 
   # The path used after sign up for inactive accounts.
+
+  def after_update_path_for(resource)
+    flash[:notice] = "Profile updated successfully"
+    home_path
+  end
+
   def after_inactive_sign_up_path_for(resource)
     # super(resource)
     flash.delete(:notice)

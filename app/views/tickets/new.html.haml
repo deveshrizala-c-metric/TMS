@@ -1,0 +1,64 @@
+%h1 Create a New Ticket
+%p
+  Please fill in the form below to open a new ticket.
+%br/
+= form_for(@ticket, url: {action: "create"}) do |f|
+  .row
+    .col-md-2
+      = f.label :department
+    .col-md-10
+      = f.collection_select :department_id, Department.all, :id, :name, autofocus: true
+  .row
+    .col-md-2
+      = f.label :email
+    .col-md-10
+      = current_user.email
+  .row
+    .col-md-2
+      = f.label :client
+    .col-md-10
+      = current_user.fullname
+  %br/
+  .row
+    .col-md-6
+      %h4{:style => "color: #0000CD;"}
+        Ticket Details
+  .row
+    .col-md-6
+      %p
+        Please Describe Your Issue
+  %br/
+  .row
+    .col-md-2
+      = f.label :issue_summary
+    .col-md-10
+      = f.collection_select :issue_summary_id, IssueSummary.all, :id, :name
+  .row
+    .col-md-2
+      = f.label :issue_details
+  .row
+    .col-md-9
+      = f.text_area :issue_details, :class => "tinymce", :rows => 10, :cols => 60
+  %br/
+  .row
+    .col-md-2
+      =f.label :image
+    .col-md-10
+      =f.file_field :image
+  .row
+    .col-md-2
+      = f.label :location
+    .col-md-10
+      = f.select :location, [['Ahemdabad','Ahemdabad'],['Gandhinagar','Gandhinagar'],['US Office','US Office']]
+  .row
+    .col-md-2
+      = f.label :Status
+    .col-md-10
+      Open
+  .row
+    .col-md-2
+      .actions
+        %br/
+        = f.submit "Create Ticket", class: 'btn btn-primary'
+
+= tinymce

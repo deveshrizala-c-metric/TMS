@@ -1,9 +1,14 @@
 Feature: User
 
+Scenario: Create New User
+  Given I am on "/users/sign_up" page
+  When I create a New User
+  And I click on "Sign up"
+  Then I should redirect to the "/users/sign_in"
+
 Scenario: Viewing user's Sign in page
   Given I am on "/users/sign_in" page
-  When I fill in the "Email" field with "aaa@example.com"
-  And I fill in the "Password" field with "aaa@123#"
+  When I log in with created user
   And I click on "Log in"
   Then I should redirect to "/home" of application
 
@@ -24,15 +29,6 @@ Scenario: Link for Receive Confirmation
   When I should see "Didn't receive confirmation instructions?" in a link
   And I click on the "Didn't receive confirmation instructions?" link
   Then I should redirect to the "/users/confirmation/new"
-
-Scenario: Create New User
-  Given I am on "/users/sign_up" page
-  When I fill in the "Fullname" field with "aaa xyz"
-  And I fill in the "Phone" field with "9988776655"
-  And I fill in the "Email" field with "aaa@example.com"
-  And I fill in the "Password" field with "aaa@123#"
-  And I click on "Sign up"
-  Then I should redirect to the "/users/sign_in"
 
 Scenario: Link for Log in
   Given I am on "/users/sign_up" page

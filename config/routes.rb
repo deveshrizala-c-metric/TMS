@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     root 'users/sessions#new'
   end
 
+  resources :tickets, only: [:index, :new, :create, :show, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

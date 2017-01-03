@@ -1,0 +1,72 @@
+%h1 Show a Ticket
+%br/
+.row
+  .col-md-3
+    %strong Ticket No.
+  .col-md-9
+    = @ticket.id
+%br/
+.row
+  .col-md-3
+    %strong Department
+  .col-md-9
+    = @ticket.department.name
+%br/
+.row
+  .col-md-3
+    %strong Issue Summary
+  .col-md-9
+    = @ticket.issue_summary.name
+%br/
+.row
+  .col-md-3
+    %strong Issue Details
+  .col-md-9
+    = @ticket.issue_details
+%br/
+.row
+  .col-md-3
+    %strong File
+  .col-md-9
+    / = link_to image_tag(@ticket.image.url, class: 'media-object', :style => "height: 50%; width: 50%;"), "data-target" => "#myModal", "data-toggle" => "modal"
+
+    = link_to image_tag(@ticket.image.url, class: 'media-object', :style => "height: 50%; width: 50%;"), @ticket.image.url
+
+    / %button.btn.btn-info.btn-lg{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"} Open Modal
+
+    // Modal
+    / #myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :id => "myModal" , :tabindex => "-1"}
+    /   .modal-dialog
+    /     .modal-content
+    /       .modal-header
+    /         %button.close{"data-dismiss" => "modal", :type => "button"} ×
+    /       .modal-body
+    /         = image_tag @ticket.image.url
+
+    / Modal
+    #myModal.modal.fade{:role => "dialog"}
+      .modal-dialog
+        / Modal content
+        .modal-content
+          .modal-header
+            %button.close{"data-dismiss" => "modal", :type => "button"} ×
+            %h4.modal-title Modal Header
+          .modal-body
+            %p Some text in the modal.
+          .modal-footer
+            %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+
+%br/
+.row
+  .col-md-3
+    %strong Location
+  .col-md-9
+    = @ticket.location
+%br/
+.row
+  .col-md-3
+    %strong Status
+  .col-md-9
+    = @ticket.status
+%br/
+= link_to "Back", tickets_path, class: 'btn btn-info button'
