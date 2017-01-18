@@ -5,7 +5,9 @@
     %strong Ticket No.
   .col-md-2
     %strong Issue Summary
-  .col-md-8
+  .col-md-2
+    %strong Status
+  .col-md-6
 
 - @tickets.each do |ticket|
   %br/
@@ -14,7 +16,9 @@
       = ticket.id
     .col-md-2
       = ticket.issue_summary.name
-    .col-md-8
+    .col-md-2
+      = ticket.status
+    .col-md-6
       = link_to ticket, class: 'btn btn-info button' do
         %i.glyphicon.glyphicon-eye-open Show
       = link_to ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger button' do

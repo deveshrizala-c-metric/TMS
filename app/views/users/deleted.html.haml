@@ -1,0 +1,23 @@
+%h1 Deleted Users
+
+%br/
+.row
+  .col-md-2
+    %strong User Id
+  .col-md-2
+    %strong Full Name
+  .col-md-4
+    %strong Deleted_At
+  .col-md-2
+
+- @users.each do |user|
+  %br/
+  .row
+    .col-md-2
+      = user.id
+    .col-md-2
+      = user.fullname
+    .col-md-4
+      = user.deleted_at
+    .col-md-2
+      = link_to 'Restore', restore_user_path(user), class: 'btn btn-info button'

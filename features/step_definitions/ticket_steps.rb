@@ -28,3 +28,11 @@ end
 When(/^Ticket will be deleted$/) do
   visit tickets_path(@user.tickets.first.delete)
 end
+
+Then(/^I should see the list of Deleted Tickets$/) do
+  @tickets = Ticket.only_deleted.where('user_id = ?',@user)
+end
+
+When(/^Ticket will be restored$/) do
+  Ticket.restore(@user.tickets.first)
+end

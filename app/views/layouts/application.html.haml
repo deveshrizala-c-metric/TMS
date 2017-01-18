@@ -43,8 +43,20 @@
                     %li.divider{:role => "separator"}
                   %li
                     %a{:href => "/tickets/new"} New Ticket
-              %li
-                %a.cus-navbar{:href => "#"} Check Status
+                  %li
+                    %a{:href => "/tickets/deleted"} Deleted
+              -if current_user
+                -if current_user.has_role? :admin
+                  %li.dropdown
+                    %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                      Users
+                      %span.caret
+                    %ul.dropdown-menu
+                      %li
+                        %a{:href => "/users"} List
+                        %li.divider{:role => "separator"}
+                      %li
+                        %a{:href => "/users/deleted"} Deleted
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
                 - if current_user

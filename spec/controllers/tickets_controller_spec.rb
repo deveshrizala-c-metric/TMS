@@ -75,7 +75,7 @@ RSpec.describe TicketsController, type: :controller do
     end
   end
 
-  describe "DELETE #destroy" do
+  describe "DELETE #destroy & GET #deleted_ticket" do
     it "destroys the requested ticket" do
       user_with_ticket = valid_attributes
       sign_in user_with_ticket
@@ -88,6 +88,17 @@ RSpec.describe TicketsController, type: :controller do
       user_with_ticket = valid_attributes
       sign_in user_with_ticket
       delete :destroy, id: user_with_ticket.tickets.first.id, session: valid_session
+      expect(response).to redirect_to(deleted_tickets_url)
+    end
+  end
+
+  describe "GET #restore" do
+    it "restore the ticket" do
+      user_with_ticket = valid_attributes
+      sign_in user_with_ticket
+      user_ticket_id = user_with_ticket.tickets.first.id
+      delete :destroy, id: user_with_ticket.tickets.first.id, session: valid_session
+      get :restore, id: user_ticket_id, session: valid_session
       expect(response).to redirect_to(tickets_url)
     end
   end

@@ -1,0 +1,29 @@
+%h1 Show a User
+
+%br/
+.row
+  .col-md-3
+    %strong User Id
+  .col-md-9
+    = @user.id
+%br/
+.row
+  .col-md-3
+    %strong Full Name
+  .col-md-9
+    = @user.fullname
+%br/
+.row
+  .col-md-3
+    %strong Phone
+  .col-md-9
+    = @user.phone
+%br/
+.row
+  .col-md-3
+    %strong Email
+  .col-md-9
+    = @user.email
+
+%br/
+= link_to "Back", users_path, class: 'btn btn-info button'

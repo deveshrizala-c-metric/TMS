@@ -41,3 +41,44 @@ Scenario: Link for Receive Confirmation
   When I should see "Didn't receive confirmation instructions?" in a link
   And I click on the "Didn't receive confirmation instructions?" link
   Then I should redirect to the "/users/confirmation/new"
+
+Scenario: Link for List of Users
+  Given I am on "/users" page
+  Then I should see the list of Users
+
+Scenario: See the Show Button
+  Given I am on "/users/sign_in" page
+  When I log in with created user
+  And I click on "Log in"
+  And I should redirect to "/home" of application
+  And I visit "/users"
+  And should see the "Show" button
+  And press the "Show" button
+  Then I should redirect to the user's "Show" page
+
+Scenario: See the Delete Button
+  Given I am on "/users/sign_in" page
+  When I log in with created user
+  And I click on "Log in"
+  And I should redirect to "/home" of application
+  And I visit "/users"
+  And should see the "Delete" button
+  And press the "Delete" button
+  And User will be deleted
+  Then I should redirect to the "/users"
+
+Scenario: List of Deleted Users
+  Given I am on "/users/deleted_user" page
+  Then I should see the list of Deleted Users
+
+Scenario: See the Restore Button
+  Given I am on "/users/sign_in" page
+  When I log in with created user
+  And I click on "Log in"
+  And I create a New User and Delete a User
+  And I should redirect to "/home" of application
+  And I visit "/users/deleted_user"
+  And should see the "Restore" button
+  And press the "Restore" button
+  And User will be restored
+  Then I should redirect to the "/users"

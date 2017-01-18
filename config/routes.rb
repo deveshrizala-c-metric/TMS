@@ -11,10 +11,34 @@ Rails.application.routes.draw do
   get 'home', to: 'home#index'
   get 'department', to: 'department#index'
 
-  devise_scope :user do
-    root 'users/sessions#new'
+  root to: 'home#index'
+
+  resources :users do
+    member do
+      get 'restore'
+    end
+
+    collection do
+      get 'deleted'
+    end
   end
 
+  resources :tickets do
+    member do
+      get 'restore'
+      put 'update_status'
+    end
+
+    collection do
+      get 'deleted'
+    end
+  end
+
+  # devise_scope :user do
+  #   root 'users/sessions#new'
+  # end
+
+  resources :users, only: [:index, :show, :destroy]
   resources :tickets, only: [:index, :new, :create, :show, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

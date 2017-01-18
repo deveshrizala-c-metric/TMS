@@ -1,0 +1,22 @@
+%h1 Users
+
+%br/
+.row
+  .col-md-2
+    %strong User Id
+  .col-md-2
+    %strong Full Name
+  .col-md-6
+
+- @users.each do |user|
+  %br/
+  .row
+    .col-md-2
+      = user.id
+    .col-md-2
+      = user.fullname
+    .col-md-6
+      = link_to user, class: 'btn btn-info button' do
+        %i.glyphicon.glyphicon-eye-open Show
+      = link_to user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger button' do
+        %i.glyphicon.glyphicon-remove Delete
