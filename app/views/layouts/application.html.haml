@@ -61,7 +61,7 @@
               %li.dropdown
                 - if current_user
                   %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                    = current_user.fullname
+                    = current_user.fullname.blank? ? current_user.email : current_user.fullname
                     %span.caret
                   %ul.dropdown-menu
                     %li
