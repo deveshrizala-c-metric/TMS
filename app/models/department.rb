@@ -1,5 +1,5 @@
 class Department < ActiveRecord::Base
-  has_many :tickets
+  has_many :tickets, :dependent => :destroy
 
   acts_as_paranoid
 
