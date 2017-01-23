@@ -1,1 +1,23 @@
-%h2 Issue Summary List
+%h1 Issue Summary List
+%br
+.row
+  .col-md-2
+    %strong Issue Summary No.
+  .col-md-2
+    %strong Name
+  .col-md-6
+
+- @issue_sums.each do |issue_sum|
+  %br/
+  .row
+    .col-md-2
+      = issue_sum.id
+    .col-md-2
+      = issue_sum.name
+    .col-md-6
+      = link_to issuesummary_path(issue_sum), class: 'btn btn-info button' do
+        %i.glyphicon.glyphicon-eye-open Show
+      = link_to edit_issuesummary_path(issue_sum), class: 'btn btn-primary' do
+        %i.glyphicon.glyphicon-pencil Edit
+      = link_to issuesummary_path(issue_sum), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger button' do
+        %i.glyphicon.glyphicon-remove Delete

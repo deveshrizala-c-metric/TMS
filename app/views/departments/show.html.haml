@@ -1,1 +1,16 @@
-%h2 Department Show
+%h1 Department Show
+%br
+.row
+  .col-md-3
+    %strong Department Id
+  .col-md-9
+    = @department.id
+%br/
+.row
+  .col-md-3
+    %strong Name
+  .col-md-9
+    = @department.name
+
+%br/
+= link_to "Back", departments_path, class: 'btn btn-info button'

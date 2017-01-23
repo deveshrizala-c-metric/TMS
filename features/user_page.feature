@@ -51,6 +51,7 @@ Scenario: See the Show Button
   When I log in with created user
   And I click on "Log in"
   And I should redirect to "/home" of application
+  And I create a New User
   And I visit "/users"
   And should see the "Show" button
   And press the "Show" button
@@ -68,16 +69,16 @@ Scenario: See the Delete Button
   Then I should redirect to the "/users"
 
 Scenario: List of Deleted Users
-  Given I am on "/users/deleted_user" page
+  Given I am on "/users/deleted" page
   Then I should see the list of Deleted Users
 
 Scenario: See the Restore Button
   Given I am on "/users/sign_in" page
   When I log in with created user
   And I click on "Log in"
-  And I create a New User and Delete a User
+  And I create a New User and Delete a Userp
   And I should redirect to "/home" of application
-  And I visit "/users/deleted_user"
+  And I visit "/users/deleted"
   And should see the "Restore" button
   And press the "Restore" button
   And User will be restored

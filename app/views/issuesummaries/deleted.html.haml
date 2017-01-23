@@ -1,0 +1,22 @@
+%h1 Deleted IssueSummaries
+%br/
+.row
+  .col-md-2
+    %strong Issue_Summary Id
+  .col-md-2
+    %strong Name
+  .col-md-4
+    %strong Deleted_At
+  .col-md-2
+
+- @issue_sums.each do |issue_sum|
+  %br/
+  .row
+    .col-md-2
+      = issue_sum.id
+    .col-md-2
+      = issue_sum.name
+    .col-md-4
+      = issue_sum.deleted_at
+    .col-md-2
+      = link_to 'Restore', restore_issuesummary_path(issue_sum), class: 'btn btn-info button'

@@ -35,21 +35,21 @@
                 %a.cus-navbar{:href => "/home"} Home
               %li.dropdown
                 %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                  Tickets
+                  Ticket
                   %span.caret
                 %ul.dropdown-menu
                   %li
-                    %a{:href => "/tickets"} Tickets
+                    %a{:href => "/tickets"} List
                     %li.divider{:role => "separator"}
                   %li
-                    %a{:href => "/tickets/new"} New Ticket
+                    %a{:href => "/tickets/new"} New
                   %li
                     %a{:href => "/tickets/deleted"} Deleted
               -if current_user
                 -if current_user.has_role? :admin
                   %li.dropdown
                     %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                      Users
+                      User
                       %span.caret
                     %ul.dropdown-menu
                       %li
@@ -57,6 +57,30 @@
                         %li.divider{:role => "separator"}
                       %li
                         %a{:href => "/users/deleted"} Deleted
+                  %li.dropdown
+                    %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                      Department
+                      %span.caret
+                    %ul.dropdown-menu
+                      %li
+                        %a{:href => "/departments"} List
+                        %li.divider{:role => "separator"}
+                      %li
+                        %a{:href => "/departments/new"} New
+                      %li
+                        %a{:href => "/departments/deleted"} Deleted
+                  %li.dropdown
+                    %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                      IssueSummary
+                      %span.caret
+                    %ul.dropdown-menu
+                      %li
+                        %a{:href => "/issuesummaries"} List
+                        %li.divider{:role => "separator"}
+                      %li
+                        %a{:href => "/issuesummaries/new"} New
+                      %li
+                        %a{:href => "/issuesummaries/deleted"} Deleted
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
                 - if current_user
@@ -71,9 +95,6 @@
                       = link_to 'Sign out', destroy_user_session_path , :method => :delete
                 - else
                   %a{:href => "/users/sign_in"} Sign in
-          / /.navbar-collapse
-        / /.container-fluid
-
       #content
         .row
         - flash.each do |name, msg|
@@ -82,4 +103,3 @@
 
     #footer
       %p Copyright © 2016 C-Metric - All rights reserved.
-      / %a#poweredBy{:href => "http://osticket.com", :target => "_blank"} Helpdesk software - powered by osTicket

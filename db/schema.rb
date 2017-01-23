@@ -11,19 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170109070108) do
+ActiveRecord::Schema.define(version: 20170119102452) do
 
   create_table "departments", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "departments", ["deleted_at"], name: "index_departments_on_deleted_at", using: :btree
 
   create_table "issue_summaries", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "issue_summaries", ["deleted_at"], name: "index_issue_summaries_on_deleted_at", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",          limit: 255

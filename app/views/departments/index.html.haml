@@ -1,1 +1,23 @@
-%h2 Department List
+%h1 Departments
+%br
+.row
+  .col-md-2
+    %strong Department No.
+  .col-md-2
+    %strong Name
+  .col-md-6
+
+- @departments.each do |department|
+  %br/
+  .row
+    .col-md-2
+      = department.id
+    .col-md-2
+      = department.name
+    .col-md-6
+      = link_to department, class: 'btn btn-info button' do
+        %i.glyphicon.glyphicon-eye-open Show
+      = link_to edit_department_path(department), class: 'btn btn-primary' do
+        %i.glyphicon.glyphicon-pencil Edit
+      = link_to department, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger button' do
+        %i.glyphicon.glyphicon-remove Delete

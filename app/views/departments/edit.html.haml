@@ -1,1 +1,14 @@
-%h2 Department Edit
+%h1 Department Edit
+%br
+
+= form_for(@department, url: {action: "update"}) do |f|
+  .row
+    .col-md-2
+      = f.label :name
+    .col-md-10
+      = f.text_field :name
+  .row
+    .col-md-2
+      .actions
+        %br/
+        = f.submit "Update", class: 'btn btn-primary'

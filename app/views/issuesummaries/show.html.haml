@@ -1,1 +1,16 @@
-%h2 Issue Summary Show
+%h1 Issue Summary Show
+%br
+.row
+  .col-md-3
+    %strong issue_sum Id
+  .col-md-9
+    = @issue_sum.id
+%br/
+.row
+  .col-md-3
+    %strong Name
+  .col-md-9
+    = @issue_sum.name
+
+%br/
+= link_to "Back", issuesummaries_path, class: 'btn btn-info button'

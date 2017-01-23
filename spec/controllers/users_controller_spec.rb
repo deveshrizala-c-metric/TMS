@@ -36,7 +36,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe "DELETE #destroy & GET #deleted_user" do
+  describe "DELETE #destroy & GET #deleted" do
     it "destroys the requested user" do
       valid_attributes.confirm
       valid_attributes.add_role :admin
