@@ -7,7 +7,7 @@
     .col-md-2
       = f.label :department
     .col-md-10
-      = f.collection_select :department_id, Department.all, :id, :name, autofocus: true
+      = f.collection_select :department_id, Department.all, :id, :name, autofocus: true, prompt: 'Select'
   .row
     .col-md-2
       = f.label :email
@@ -32,7 +32,7 @@
     .col-md-2
       = f.label :issue_summary
     .col-md-10
-      = f.collection_select :issue_summary_id, IssueSummary.all, :id, :name
+      = f.collection_select :issue_summary_id, IssueSummary.all, :id, :name, prompt: 'Select'
   .row
     .col-md-2
       = f.label :issue_details
@@ -49,7 +49,7 @@
     .col-md-2
       = f.label :location
     .col-md-10
-      = f.select :location, [['Ahemdabad','Ahemdabad'],['Gandhinagar','Gandhinagar'],['US Office','US Office']]
+      = f.select :location, [['Ahemdabad','Ahemdabad'],['Gandhinagar','Gandhinagar'],['US Office','US Office']], prompt: 'Select'
   .row
     .col-md-2
       = f.label :Status
