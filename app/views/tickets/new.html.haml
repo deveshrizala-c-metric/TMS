@@ -7,7 +7,7 @@
     .col-md-2
       = f.label :department
     .col-md-10
-      = f.collection_select :department_id, Department.all, :id, :name, autofocus: true,
+      = f.collection_select :department_id, Department.all, :id, :name, autofocus: true
   .row
     .col-md-2
       = f.label :email
