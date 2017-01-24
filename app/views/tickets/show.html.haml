@@ -36,7 +36,10 @@
     .col-md-3
       %strong File
     .col-md-9
-      = link_to image_tag(@ticket.image.url, class: 'media-object', :style => "height: 50%; width: 50%;"), @ticket.image.url
+      -if @ticket.image_file_name.nil?
+        = "N/A"
+      -else
+        = link_to image_tag(@ticket.image.url, class: 'media-object', :style => "height: 50%; width: 50%;"), @ticket.image.url
   %br/
   .row
     .col-md-3
