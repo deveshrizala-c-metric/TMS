@@ -16,8 +16,11 @@
     .col-md-2
       = ticket.id
     .col-md-2
-      = ticket.issue_summary.name
+      = ticket.issue_summary.nil? ? "N/A" : ticket.issue_summary.name
     .col-md-4
       = ticket.deleted_at
     .col-md-2
-      = link_to 'Restore', restore_ticket_path(ticket), class: 'btn btn-info button'
+      -if ticket.department == nil || ticket.issue_summary == nil
+        Restore Department and / or Issue_Summary First.
+      -else
+        = link_to 'Restore', restore_ticket_path(ticket), class: 'btn btn-info button'

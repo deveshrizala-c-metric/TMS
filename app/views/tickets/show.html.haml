@@ -6,7 +6,7 @@
       .col-md-3
         %strong Name
       .col-md-9
-        = @ticket.user.fullname
+        = @ticket.user.fullname.blank? ? "N/A" : @ticket.user.fullname
   %br/
   .row
     .col-md-3
