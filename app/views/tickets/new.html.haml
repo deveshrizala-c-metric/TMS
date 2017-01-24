@@ -18,7 +18,7 @@
     .col-md-2
       = f.label :client
     .col-md-10
-      = current_user.fullname
+      = current_user.fullname.blank? ? "N/A" : current_user.fullname
   %br/
   .row
     .col-md-6
