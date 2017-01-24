@@ -9,7 +9,10 @@ class Ticket < ActiveRecord::Base
 
   resourcify
 
+  validates :department, presence: true
+  validates :issue_summary, presence: true
   validates :issue_details, presence: true
+  validates :location, presence: true
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates_attachment_size :image, :less_than => 10.megabytes
 end
