@@ -6,9 +6,9 @@
     %strong Ticket Id
   .col-md-2
     %strong Issue_Summary
-  .col-md-4
+  .col-md-3
     %strong Deleted_At
-  .col-md-2
+  .col-md-5
 
 - @tickets.each do |ticket|
   %br/
@@ -17,10 +17,10 @@
       = ticket.id
     .col-md-2
       = ticket.issue_summary.nil? ? "N/A" : ticket.issue_summary.name
-    .col-md-4
+    .col-md-3
       = ticket.deleted_at
-    .col-md-2
-      -if ticket.department == nil || ticket.issue_summary == nil
-        Restore Department and / or Issue_Summary First.
+    .col-md-5
+      -if ticket.user == nil || ticket.department == nil || ticket.issue_summary == nil
+        Restore User and / or Department and / or Issue_Summary First.
       -else
         = link_to 'Restore', restore_ticket_path(ticket), class: 'btn btn-info button'
