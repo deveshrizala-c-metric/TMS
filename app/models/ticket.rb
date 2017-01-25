@@ -9,6 +9,8 @@ class Ticket < ActiveRecord::Base
 
   resourcify
 
+  sanitizes :issue_details, on: :create
+
   validates :department, presence: true
   validates :issue_summary, presence: true
   validates :issue_details, presence: true
