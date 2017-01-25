@@ -16,7 +16,7 @@
     .col-md-2
       = user.id
     .col-md-2
-      = user.fullname
+      = user.fullname.blank? ? "N/A" : user.fullname
     .col-md-4
       = user.deleted_at
     .col-md-2
