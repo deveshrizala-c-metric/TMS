@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @user = User.only_deleted.find(params[:id])
 
     respond_to do |format|
-      if User.restore(@user.id, :recursive => true)
+      if User.restore(@user.id)
         flash[:success] = 'User restored successfully'
         format.html { redirect_to users_path }
       else

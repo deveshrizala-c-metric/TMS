@@ -15,7 +15,7 @@
     .col-md-2
       = ticket.id
     .col-md-2
-      = ticket.issue_summary.name
+      = ticket.issue_summary.nil? ? "N/A" : ticket.issue_summary.name
     .col-md-2
       = ticket.status
     .col-md-6
