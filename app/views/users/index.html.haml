@@ -18,5 +18,5 @@
     .col-md-6
       = link_to user, class: 'btn btn-info button' do
         %i.glyphicon.glyphicon-eye-open Show
-      = link_to user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger button' do
+      = link_to user, method: :delete, data: { confirm: 'Are you sure yo want to delete user? Once you delete user the tickets related user also deleted?' }, class: 'btn btn-danger button' do
         %i.glyphicon.glyphicon-remove Delete

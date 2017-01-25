@@ -18,13 +18,13 @@
     .col-md-3
       %strong Department
     .col-md-9
-      = @ticket.department.name
+      = @ticket.department.nil? ? "N/A" : @ticket.department.name
   %br/
   .row
     .col-md-3
       %strong Issue Summary
     .col-md-9
-      = @ticket.issue_summary.name
+      = @ticket.issue_summary.nil? ? "N/A" : @ticket.issue_summary.name
   %br/
   .row
     .col-md-3
