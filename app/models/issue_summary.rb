@@ -3,5 +3,5 @@ class IssueSummary < ActiveRecord::Base
 
   acts_as_paranoid
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 15 }, on: :create
 end

@@ -12,12 +12,17 @@ class IssuesummariesController < ApplicationController
   def create
     @issue_sum = IssueSummary.new(issue_sum_params)
     respond_to do |format|
-      if @issue_sum.save
-        flash[:success] = 'Issue_Summary created successfully'
-        format.html { redirect_to issuesummaries_path }
+      if @issue_sum.valid? == false
+       flash[:danger] = @issue_sum.errors.full_messages
+       format.html { redirect_to new_issuesummary_path }
       else
-        flash[:danger] = 'There is a problem in creating the issue_summary'
-        format.html { render :new }
+        if @issue_sum.save
+          flash[:success] = 'Issue_Summary created successfully'
+          format.html { redirect_to issuesummaries_path }
+        else
+          flash[:danger] = 'There is a problem in creating the issue_summary'
+          format.html { render :new }
+        end
       end
     end
   end
@@ -52,7 +57,7 @@ class IssuesummariesController < ApplicationController
         flash[:success] = 'IssueSummary was successfully deleted.'
         format.html { redirect_to deleted_issuesummaries_path }
       else
-        flash[:danger] = 'There was a problem deleting the department.'
+        flash[:danger] = 'There was a problem deleting the issue_sum.'
         format.html { redirect_to issuesummaries_path }
       end
     end

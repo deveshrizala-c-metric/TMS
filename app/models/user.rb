@@ -9,6 +9,6 @@ class User < ActiveRecord::Base
 
   has_many :tickets, :dependent => :destroy
 
-  # validates :phone, :numericality => true, :length => { :minimum => 10, :maximum => 15 }
-  # validates_format_of :phone, :with =>  /\d[0-9]\)*\z/ , :message => "Only positive number without spaces are allowed"
+  validates :fullname, length: { maximum: 30 }
+  validates :phone, length: { maximum: 15 }, numericality: true
 end

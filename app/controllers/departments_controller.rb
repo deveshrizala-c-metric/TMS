@@ -11,13 +11,19 @@ class DepartmentsController < ApplicationController
 
   def create
     @department = Department.new(department_params)
+
     respond_to do |format|
-      if @department.save
-        flash[:success] = 'Department created successfully'
-        format.html { redirect_to departments_path }
+      if @department.valid? == false
+       flash[:danger] = @department.errors.full_messages
+       format.html { redirect_to new_department_path }
       else
-        flash[:danger] = 'There is a problem in creating the department'
-        format.html { render :new }
+        if @department.save
+          flash[:success] = 'Department created successfully'
+          format.html { redirect_to departments_path }
+        else
+          flash[:danger] = 'There is a problem in creating the department'
+          format.html { render :new }
+        end
       end
     end
   end
