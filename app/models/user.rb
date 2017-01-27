@@ -10,5 +10,5 @@ class User < ActiveRecord::Base
   has_many :tickets, :dependent => :destroy
 
   validates :fullname, length: { maximum: 30 }
-  validates :phone, length: { maximum: 15 }, numericality: true
+  validates :phone, length: { maximum: 15 }, numericality: true, allow_blank: true
 end
