@@ -44,7 +44,7 @@ class DepartmentsController < ApplicationController
         flash[:success] = 'Department was successfully updated.'
         format.html { redirect_to @department }
       else
-        flash[:danger] = 'There was a problem updating the department.'
+        flash[:danger] = @department.errors.full_messages
         format.html { render :edit }
       end
     end

@@ -43,7 +43,7 @@ class IssuesummariesController < ApplicationController
         flash[:success] = 'IssueSummary was successfully updated.'
         format.html { redirect_to issuesummary_path }
       else
-        flash[:danger] = 'There was a problem updating the issuesummary.'
+        flash[:danger] = @issue_sum.errors.full_messages
         format.html { render :edit }
       end
     end
