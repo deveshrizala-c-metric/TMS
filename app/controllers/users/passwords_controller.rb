@@ -5,9 +5,16 @@ class Users::PasswordsController < Devise::PasswordsController
   # end
 
   # POST /resource/password
-  # def create
-  #   super
-  # end
+  def create
+    user = User.where('email = ?', params[:user][:email]).first
+
+    if user.confirmed? == false
+      flash[:danger] = 'To countinue please confirm your account.'
+      redirect_to new_user_session_path
+    else
+      super
+    end
+  end
 
   # GET /resource/password/edit?reset_password_token=abcdef
   # def edit
