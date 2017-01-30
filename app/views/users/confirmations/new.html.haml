@@ -8,6 +8,6 @@
     = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
   %br/
   .actions
-    = f.submit "Resend confirmation instructions", class: 'btn btn-primary'
+    = f.submit "Resend confirmation instructions", class: 'btn btn-primary', id: 'resend_confirmation'
   %p
     = render "users/shared/links"
