@@ -10,9 +10,16 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    u = User.only_deleted.where("email = ?", params[:user][:email])
+
+    if u.present?
+      flash[:danger] = 'User Deleted. Please Contact Admin.'
+      redirect_to new_user_session_path
+    else
+      super
+    end
+  end
 
   # GET /resource/edit
   # def edit

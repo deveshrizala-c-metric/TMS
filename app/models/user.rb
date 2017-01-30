@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
 
   validates :fullname, length: { maximum: 30 }
   validates :phone, length: { maximum: 15 }, numericality: true, allow_blank: true
+
 end
