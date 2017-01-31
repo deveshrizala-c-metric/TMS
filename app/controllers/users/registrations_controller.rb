@@ -17,7 +17,12 @@ before_action :configure_permitted_parameters, if: :devise_controller?
       flash[:danger] = 'User Deleted. Please Contact Admin.'
       redirect_to new_user_session_path
     else
-      super
+      if validate_email(params[:user][:email])
+        super
+      else
+        flash[:danger] = 'Invaild Email Format.'
+        redirect_to new_user_registration_path
+      end
     end
   end
 
@@ -82,5 +87,10 @@ before_action :configure_permitted_parameters, if: :devise_controller?
     flash.delete(:notice)
     flash[:info] = "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
     new_user_session_path
+  end
+
+  private
+  def validate_email(email)
+    (email =~ /^(([A-Za-z0-9])\w*(\.?|\-?|\+))+@{1}(([A-Za-z])\w+\.{1}){1,2}([A-Za-z])\w+$/) ? true : false
   end
 end
