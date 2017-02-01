@@ -14,9 +14,6 @@
 
     #container
       #header
-        %a#logo.pull-left{:href => "/helpdesk/index.php", :title => "Support Center"}
-          %span.valign-helper
-          %img{:alt => "c-metric", :border => "0", :src => "/helpdesk/logo.php"}
       .clear
       %nav.navbar.navbar-inverse
         .container-fluid
@@ -27,27 +24,26 @@
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-            %a.navbar-brand{:href => "#"} C-Metric
+            .navbar-brand C-Metric
           / Collect the nav links, forms, and other content for toggling
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             %ul.nav.navbar-nav
-              %li.active
+              %li#home.nav-li
                 %a.cus-navbar{:href => "/home"} Home
-              %li.dropdown
-                %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                  Ticket
-                  %span.caret
-                %ul.dropdown-menu
-                  %li
-                    %a{:href => "/tickets"} List
-                    %li.divider{:role => "separator"}
-                  %li
-                    %a{:href => "/tickets/new"} New
-                  %li
-                    %a{:href => "/tickets/deleted"} Deleted
               -if current_user
+                %li#tickets.dropdown.nav-li
+                  %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                    Ticket
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => "/tickets"} List
+                    %li
+                      %a{:href => "/tickets/new"} New
+                    %li
+                      %a{:href => "/tickets/deleted"} Deleted
                 -if current_user.has_role? :admin
-                  %li.dropdown
+                  %li#users.dropdown.nav-li
                     %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                       User
                       %span.caret
@@ -57,7 +53,7 @@
                         %li.divider{:role => "separator"}
                       %li
                         %a{:href => "/users/deleted"} Deleted
-                  %li.dropdown
+                  %li#departments.dropdown.nav-li
                     %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                       Department
                       %span.caret
@@ -69,7 +65,7 @@
                         %a{:href => "/departments/new"} New
                       %li
                         %a{:href => "/departments/deleted"} Deleted
-                  %li.dropdown
+                  %li#issuesummaries.dropdown.nav-li
                     %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                       IssueSummary
                       %span.caret
@@ -82,7 +78,7 @@
                       %li
                         %a{:href => "/issuesummaries/deleted"} Deleted
             %ul.nav.navbar-nav.navbar-right
-              %li.dropdown
+              %li#user_profile.dropdown
                 - if current_user
                   %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                     = current_user.fullname.blank? ? current_user.email : current_user.fullname
@@ -94,7 +90,7 @@
                     %li
                       = link_to 'Sign out', destroy_user_session_path , :method => :delete
                 - else
-                  %a{:href => "/users/sign_in"} Sign in
+                  %a{:href => "/users/sign_in"}Sign in
       #content
         .row
         - flash.each do |name, msg|

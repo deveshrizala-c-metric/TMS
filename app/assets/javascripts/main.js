@@ -1,4 +1,5 @@
-$(function(){
+$(document).ready(function(){
+
   setTimeout(function(){
     $('.alert').remove();
   }, 5000);
@@ -14,13 +15,5 @@ $(function(){
     this.form.submit();
     this.disabled = true;
   })
+
 });
-
-
-
-// document.getElementById("resend_confirmation").onclick = function() {
-//     //disable
-//     this.disabled = true;
-
-//     //do some validation stuff
-// }

@@ -25,7 +25,6 @@ a {
   line-height: 20px;
   text-align: center;
   margin-left: 10px;
-  border-radius: 20px;
   color: #003EFF;
 }
 
@@ -96,7 +95,10 @@ hr{
 
 a:hover{
   color: #003EFF;
-  font-weight: bold;
+}
+
+.nav-li:hover{
+  background-color: black;
 }
 
 a.cus-navbar{
@@ -109,7 +111,6 @@ a.cus-navbar{
 }
 
 .active{
-  background-color: #dbefff;
   color: #000;
 }
 
