@@ -8,11 +8,16 @@ class Users::PasswordsController < Devise::PasswordsController
   def create
     user = User.where('email = ?', params[:user][:email]).first
 
-    if user.confirmed? == false
-      flash[:danger] = 'To countinue please confirm your account.'
-      redirect_to new_user_session_path
+    if user.present?
+      unless user.confirmed?
+        flash[:danger] = 'To countinue please confirm your account.'
+        redirect_to new_user_session_path
+      else
+        super
+      end
     else
-      super
+      flash[:danger] = 'User does not exists,so not able to change the password.'
+      redirect_to new_user_session_path
     end
   end
 
