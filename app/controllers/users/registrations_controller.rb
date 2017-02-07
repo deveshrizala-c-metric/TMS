@@ -17,11 +17,16 @@ before_action :configure_permitted_parameters, if: :devise_controller?
       flash[:danger] = 'User Deleted. Please Contact Admin.'
       redirect_to new_user_session_path
     else
-      if validate_email(params[:user][:email])
-        super
-      else
-        flash[:danger] = 'Invaild Email Format.'
+      if params[:user][:email].blank?
+        flash[:danger] = 'Email can not be blank.'
         redirect_to new_user_registration_path
+      else
+        if validate_email(params[:user][:email])
+          super
+        else
+          flash[:danger] = 'Invaild Email Format.'
+          redirect_to new_user_registration_path
+        end
       end
     end
   end
