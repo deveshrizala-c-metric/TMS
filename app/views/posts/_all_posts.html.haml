@@ -1,0 +1,15 @@
+- @posts.each_with_index do |ticket_post|
+  - unless ticket_post.new_record?
+    .row#post
+      .row#post_title
+        .col-md-6
+          = ticket_post.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
+        .col-md-6
+          - user = User.find(ticket_post.user_id)
+          Posted By:
+          = user.fullname.blank? ? user.email : user.fullname
+      %br/
+      .row#post_content
+        .col-md-12
+          = ticket_post.description
+    %br/

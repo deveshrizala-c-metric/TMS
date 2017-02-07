@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   resources :tickets, only: [:index, :new, :create, :show, :destroy]
   resources :departments
   resources :issuesummaries
+  resources :posts, only: [:index, :new, :create]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,23 +1,24 @@
 %h1 Departments
-%br
-.row
-  .col-md-2
-    %strong Department Id
-  .col-md-2
-    %strong Name
-  .col-md-6
+%br/
 
-- @departments.each do |department|
-  %br/
-  .row
-    .col-md-2
-      = department.id
-    .col-md-2
-      = department.name
-    .col-md-6
-      = link_to department, class: 'btn btn-info button' do
-        %i.glyphicon.glyphicon-eye-open Show
-      = link_to edit_department_path(department), class: 'btn btn-primary' do
-        %i.glyphicon.glyphicon-pencil Edit
-      = link_to department, method: :delete, data: { confirm: 'Are you sure yo want to delete Department? Once you delete department the tickets related department also deleted?' }, class: 'btn btn-danger button' do
-        %i.glyphicon.glyphicon-remove Delete
+%table#myTable.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Department Id
+      %th Name
+      %th Action
+
+  %tbody
+    - @departments.each do |department|
+      %tr
+        %td
+          = department.id
+        %td
+          = department.name
+        %td
+          = link_to department do
+            %i.glyphicon.glyphicon-eye-open
+          = link_to edit_department_path(department) do
+            %i.glyphicon.glyphicon-pencil
+          = link_to department, method: :delete, data: { confirm: 'Are you sure you want to delete Department? Once you delete department the tickets related department also deleted?' } do
+            %i.glyphicon.glyphicon-remove

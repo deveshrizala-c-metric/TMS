@@ -88,6 +88,25 @@ hr{
   color: #fff;
 }
 
+.row #post {
+  display: block;
+  margin-left: 15px;
+  margin-right: 15px;
+  background: white;
+}
+
+.row #post_title {
+  background: #323232;
+  color: white;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.row #post_content {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
 .navbar-inverse {
   background-color: #222;
   border-color: #090909;
@@ -140,11 +159,6 @@ a.cus-navbar{
   height: 30px;
 }
 
-.button:hover{
-  color: white;
-  font-weight: bold;
-}
-
 /*flash*/
 .alert-error {
   background-color: #f2dede;
@@ -189,4 +203,21 @@ element.style {
   display: table-cell;
   padding: 15px;
   vertical-align: top;
+}
+
+.table-bordered
+{
+  border: 1px solid black;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td {
+    border: 1px solid black;
+}
+
+.glyphicon.glyphicon-pencil {
+  color: green
+}
+
+.glyphicon.glyphicon-remove {
+  color: red
 }

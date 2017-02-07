@@ -31,17 +31,6 @@
               %li#home.nav-li
                 %a.cus-navbar{:href => "/home"} Home
               -if current_user
-                %li#tickets.dropdown.nav-li
-                  %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                    Ticket
-                    %span.caret
-                  %ul.dropdown-menu
-                    %li
-                      %a{:href => "/tickets"} List
-                    %li
-                      %a{:href => "/tickets/new"} New
-                    %li
-                      %a{:href => "/tickets/deleted"} Deleted
                 -if current_user.has_role? :admin
                   %li#users.dropdown.nav-li
                     %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -77,6 +66,17 @@
                         %a{:href => "/issuesummaries/new"} New
                       %li
                         %a{:href => "/issuesummaries/deleted"} Deleted
+                %li#tickets.dropdown.nav-li
+                  %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                    Ticket
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => "/tickets"} List
+                    %li
+                      %a{:href => "/tickets/new"} New
+                    %li
+                      %a{:href => "/tickets/deleted"} Deleted
             %ul.nav.navbar-nav.navbar-right
               %li#user_profile.dropdown
                 - if current_user

@@ -1,60 +1,75 @@
 %h1 Show a Ticket
 = form_for @ticket, :url => {:controller => 'tickets', :action => 'update_status'}, method: :put do |f|
-  - if current_user.has_role? :admin
-    %br/
-    .row
-      .col-md-3
-        %strong Name
-      .col-md-9
-        = @ticket.user.fullname.blank? ? "N/A" : @ticket.user.fullname
   %br/
   .row
-    .col-md-3
-      %strong Ticket No.
-    .col-md-9
-      = @ticket.id
-  %br/
-  .row
-    .col-md-3
+    .col-md-2
+      %strong Name
+    .col-md-4
+      = @ticket.user.fullname.blank? ? "N/A" : @ticket.user.fullname
+    .col-md-2
       %strong Department
-    .col-md-9
+    .col-md-4
       = @ticket.department.nil? ? "N/A" : @ticket.department.name
   %br/
   .row
-    .col-md-3
+    .col-md-2
+      %strong Ticket No.
+    .col-md-4
+      = @ticket.id
+    .col-md-2
       %strong Issue Summary
-    .col-md-9
+    .col-md-4
       = @ticket.issue_summary.nil? ? "N/A" : @ticket.issue_summary.name
   %br/
   .row
-    .col-md-3
-      %strong Issue Details
-    .col-md-9
-      = @ticket.issue_details
-  %br/
-  .row
-    .col-md-3
-      %strong File
-    .col-md-9
-      -if @ticket.image_file_name.nil?
-        = "N/A"
-      -else
-        = link_to image_tag(@ticket.image.url, class: 'media-object', :style => "height: 50%; width: 50%;"), @ticket.image.url
-  %br/
-  .row
-    .col-md-3
+    .col-md-2
       %strong Location
-    .col-md-9
+    .col-md-4
       = @ticket.location
-  %br/
-  .row
-    .col-md-3
+    .col-md-2
       %strong Status
-    .col-md-9
+    .col-md-4
       - if current_user.has_role? :admin
         = f.select :status ,[['Open','Open'],['In progress','In Progress'],['Completed','Completed']]
         = f.submit "Update"
       - else
         = @ticket.status
+  %br/
+  .row
+    .col-md-2
+      %strong File
+    .col-md-4
+      -if @ticket.image_file_name.nil?
+        = "N/A"
+      -else
+        = link_to image_tag(@ticket.image.url, class: 'media-object', :style => "height: 50%; width: 100%;"), @ticket.image.url
+    .col-md-2
+      %strong Issue Details
+    .col-md-4
+      = @ticket.issue_details
+
 %br/
-= link_to "Back", tickets_path, class: 'btn btn-info button'
+.row
+  .col-md-12
+    %strong All Posts
+%br/
+.row
+  .col-md-12
+    = render :partial => "posts/all_posts"
+
+%br/
+.row
+  .col-md-10
+    = form_for(@post, url: {:controller => 'posts', action: "create"}) do |fp|
+      = fp.label :Post
+      = fp.text_area :description, :class => "tinymce", :rows => 8
+      = fp.hidden_field :ticket_id, :value => @ticket.id
+      = fp.hidden_field :user_id, :value => current_user.id
+
+      %br/
+      = fp.submit "Post", class: 'btn btn-primary'
+
+      = link_to "Back", tickets_path, class: 'btn btn-info button'
+
+
+= tinymce

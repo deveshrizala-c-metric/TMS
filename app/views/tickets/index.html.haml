@@ -1,25 +1,25 @@
 %h1 Tickets
-%br
-.row
-  .col-md-2
-    %strong Ticket Id
-  .col-md-2
-    %strong Issue Summary
-  .col-md-2
-    %strong Status
-  .col-md-6
+%br/
 
-- @tickets.each do |ticket|
-  %br/
-  .row
-    .col-md-2
-      = ticket.id
-    .col-md-2
-      = ticket.issue_summary.nil? ? "N/A" : ticket.issue_summary.name
-    .col-md-2
-      = ticket.status
-    .col-md-6
-      = link_to ticket, class: 'btn btn-info button' do
-        %i.glyphicon.glyphicon-eye-open Show
-      = link_to ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger button' do
-        %i.glyphicon.glyphicon-remove Delete
+%table#myTable.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Ticket Id
+      %th Issue Summary
+      %th Status
+      %th Action
+
+  %tbody
+    - @tickets.each do |ticket|
+      %tr
+        %td
+          = ticket.id
+        %td
+          = ticket.issue_summary.nil? ? "N/A" : ticket.issue_summary.name
+        %td
+          = ticket.status
+        %td
+          = link_to ticket do
+            %i.glyphicon.glyphicon-eye-open
+          = link_to ticket, method: :delete, data: { confirm: 'Are you sure?' } do
+            %i.glyphicon.glyphicon-remove

@@ -30,6 +30,10 @@ class TicketsController < ApplicationController
 
   def show
     @ticket = Ticket.find(params[:id])
+
+    @post = @ticket.posts.new
+
+    @posts = @ticket.posts
   end
 
   def update_status

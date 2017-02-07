@@ -8,6 +8,7 @@ $(document).on 'turbolinks:request-end', ->
   return
 
 $(document).on "turbolinks:load", ->
+
   if window.location.href.split('/')[3] == ''
     $('#home').addClass 'active'
   else
@@ -15,3 +16,9 @@ $(document).on "turbolinks:load", ->
       $('#user_profile').addClass 'active'
     else
       $('#' + window.location.href.split('/')[3]).addClass 'active'
+
+
+  $('#myTable').dataTable 'columnDefs': [ {
+  'orderable': false
+  'targets': -1
+  } ]

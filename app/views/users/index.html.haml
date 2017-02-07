@@ -1,22 +1,22 @@
 %h1 Users
-
 %br/
-.row
-  .col-md-2
-    %strong User Id
-  .col-md-2
-    %strong Full Name
-  .col-md-6
 
-- @users.each do |user|
-  %br/
-  .row
-    .col-md-2
-      = user.id
-    .col-md-2
-      = user.fullname.blank? ? "N/A" : user.fullname
-    .col-md-6
-      = link_to user, class: 'btn btn-info button' do
-        %i.glyphicon.glyphicon-eye-open Show
-      = link_to user, method: :delete, data: { confirm: 'Are you sure yo want to delete user? Once you delete user the tickets related user also deleted?' }, class: 'btn btn-danger button' do
-        %i.glyphicon.glyphicon-remove Delete
+%table#myTable.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th User Id
+      %th Full Name
+      %th Action
+
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td
+          = user.id
+        %td
+          = user.fullname.blank? ? "N/A" : user.fullname
+        %td
+          = link_to user do
+            %i.glyphicon.glyphicon-eye-open
+          = link_to user, method: :delete, data: { confirm: 'Are you sure you want to delete user? Once you delete user the tickets related user also deleted?' }do
+            %i.glyphicon.glyphicon-remove

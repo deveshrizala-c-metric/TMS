@@ -2,6 +2,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :user
   belongs_to :department
   belongs_to :issue_summary
+  has_many :posts, :dependent => :destroy
 
   acts_as_paranoid
 

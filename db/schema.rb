@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170119102452) do
+ActiveRecord::Schema.define(version: 20170207102633) do
 
   create_table "departments", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(version: 20170119102452) do
   end
 
   add_index "issue_summaries", ["deleted_at"], name: "index_issue_summaries_on_deleted_at", using: :btree
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "description", limit: 255
+    t.integer  "ticket_id",   limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id",     limit: 4
+  end
+
+  add_index "posts", ["ticket_id"], name: "index_posts_on_ticket_id", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -96,6 +107,8 @@ ActiveRecord::Schema.define(version: 20170119102452) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "posts", "tickets"
+  add_foreign_key "posts", "users"
   add_foreign_key "tickets", "departments"
   add_foreign_key "tickets", "issue_summaries"
   add_foreign_key "tickets", "users"
