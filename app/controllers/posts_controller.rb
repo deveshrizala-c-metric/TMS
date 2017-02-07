@@ -9,8 +9,8 @@ class PostsController < ApplicationController
 
     if params.permit!
       respond_to do |format|
-        if @ticket.posts.new(params[:post]).blank? == false
-         flash[:danger] = "Post can't be blank"
+        if @ticket.posts.new(params[:post]).valid? == false
+         flash[:danger] = "Post isn't valid"
          format.html { redirect_to @ticket }
         else
           if @ticket.posts.new(params[:post]).save

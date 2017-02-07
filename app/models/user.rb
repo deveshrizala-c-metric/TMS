@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :tickets, :dependent => :destroy
+  has_many :posts, :dependent => :destroy
 
   validates :fullname, length: { maximum: 30 }
   validates :phone, length: { maximum: 15 }, numericality: true, allow_blank: true
