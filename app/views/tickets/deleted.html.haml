@@ -23,4 +23,4 @@
       -if ticket.user == nil || ticket.department == nil || ticket.issue_summary == nil
         Restore User and / or Department and / or Issue_Summary First.
       -else
-        = link_to 'Restore', restore_ticket_path(ticket), class: 'btn btn-info button'
+        = link_to 'Restore', restore_ticket_path(ticket), class: 'btn btn-primary button'
