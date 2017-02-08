@@ -8,8 +8,10 @@
       = "*"
     .col-md-10
       = f.text_field :name
+  %br/
   .row
-    .col-md-2
+    .col-md-6
       .actions
-        %br/
         = f.submit "Create", class: 'btn btn-primary'
+        = f.button "Reset", type: :reset, class: "btn btn-info"
+        = link_to "Back", departments_path , class: 'btn btn-info button', id: 'back-button'
