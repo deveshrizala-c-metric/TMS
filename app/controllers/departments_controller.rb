@@ -14,7 +14,7 @@ class DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.valid? == false
-       flash[:danger] = @department.errors.full_messages
+       flash[:danger] = @department.errors.full_messages.to_sentence
        format.html { redirect_to new_department_path }
       else
         if @department.save
@@ -44,7 +44,7 @@ class DepartmentsController < ApplicationController
         flash[:success] = 'Department was successfully updated.'
         format.html { redirect_to @department }
       else
-        flash[:danger] = @department.errors.full_messages
+        flash[:danger] = @department.errors.full_messages.to_sentence
         format.html { render :edit }
       end
     end

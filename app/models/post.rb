@@ -4,5 +4,5 @@ class Post < ActiveRecord::Base
 
   sanitizes :description, on: :create
 
-  validates :description, :presence => true, on: :create
+  validates :description, :presence => true, length: { maximum: 255 }, on: :create
 end

@@ -18,12 +18,17 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new(ticket_params.merge(user_id: current_user.id, status: "Open"))
 
     respond_to do |format|
-      if @ticket.save
-        flash[:success] = 'Ticket created successfully'
-        format.html { redirect_to tickets_path }
+      if @ticket.valid? == false
+       flash[:danger] = @ticket.errors.full_messages.to_sentence
+       format.html { redirect_to new_ticket_path }
       else
-        flash[:danger] = 'There is a problem in creating the ticket'
-        format.html { redirect_to new_ticket_path }
+        if @ticket.save
+          flash[:success] = 'Ticket created successfully'
+          format.html { redirect_to tickets_path }
+        else
+          flash[:danger] = 'There is a problem in creating the ticket'
+          format.html { redirect_to new_ticket_path }
+        end
       end
     end
   end
