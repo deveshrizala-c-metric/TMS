@@ -2,6 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
 
+
 before_action :configure_permitted_parameters, if: :devise_controller?
 
   # GET /resource/sign_up
@@ -17,16 +18,14 @@ before_action :configure_permitted_parameters, if: :devise_controller?
       flash[:danger] = 'User Deleted. Please Contact Admin.'
       redirect_to new_user_session_path
     else
-      if params[:user][:email].blank?
-        flash[:danger] = 'Email can not be blank.'
-        redirect_to new_user_registration_path
-      else
-        if validate_email(params[:user][:email])
-          super
-        else
-          flash[:danger] = 'Invaild Email Format.'
-          redirect_to new_user_registration_path
-        end
+      puts "@@@@@@@@@@@@@@@@@@@@@@@@@@"
+      puts params[:user][:email]
+      puts "@@@@@@@@@@@@@@@@@@@@@@@@@@"
+      if valid_email(params[:user][:email]) == true
+        puts "************************"
+        puts params[:user][:email]
+        puts "************************"
+        super
       end
     end
   end
@@ -37,9 +36,11 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if valid_email(params[:user][:email])
+      super
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -56,7 +57,6 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   # end
 
   protected
-
   def configure_permitted_parameters
     if params[:action] == 'update'
       devise_parameter_sanitizer.permit(:account_update, keys: [:fullname,:phone])
@@ -95,7 +95,27 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   end
 
   private
+  def valid_email(email)
+    if email.blank?
+        flash[:danger] = 'Email can not be blank.'
+        redirect_to new_user_registration_path
+    else
+      if validate_email(email)
+        puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+        puts email.inspect
+        puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+        true
+      else
+        puts "==============================="
+        puts email.inspect
+        puts "==============================="
+        flash[:danger] = 'Invaild Email Format.'
+        redirect_to new_user_registration_path
+      end
+    end
+  end
+
   def validate_email(email)
-    (email =~ /^(([A-Za-z0-9])\w*(\.?|\-?|\+))+@{1}(([A-Za-z])\w+\.{1}){1,2}([A-Za-z])\w+$/) ? true : false
+    (email =~ /^(([A-Za-z0-9])\w+(\.?|\-?|\+))+@{1}(([A-Za-z])\w*-?([A-Za-z])\w*?\.{1}){1,2}([A-Za-z])\w+$/) ? true : false
   end
 end

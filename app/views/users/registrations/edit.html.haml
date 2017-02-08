@@ -10,13 +10,11 @@
     = f.label :phone
     %br/
     = f.text_field :phone
-  / .field
-  /   = f.label :email
-  /   %br/
-  /   = f.email_field :email, autofocus: true
-  / - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-  /   %div
-  /     Currently waiting confirmation for: #{resource.unconfirmed_email}
+  .field
+    = f.hidden_field :email
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    %div
+      Currently waiting confirmation for: #{resource.unconfirmed_email}
   / .field
   /   = f.label :password
   /   %i (leave blank if you don't want to change it)
@@ -40,5 +38,4 @@
   %br
   .actions
     = f.submit "Update", class: 'btn btn-primary'
-%p
-  = link_to "Back", :back
+    = link_to "Back", :back, class: 'btn btn-info button'
