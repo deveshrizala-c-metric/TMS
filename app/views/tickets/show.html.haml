@@ -3,7 +3,19 @@
   %br/
   .row
     .col-md-2
-      %strong Name
+      %h5
+        %strong Ticket No.
+    .col-md-4
+      %h5
+        %strong
+          = @ticket.id
+  %br/
+  .row
+    .col-md-2
+      -if current_user.has_role? :admin
+        %strong Created By
+      -else
+        %strong Name
     .col-md-4
       = @ticket.user.fullname.blank? ? "N/A" : @ticket.user.fullname
     .col-md-2
@@ -13,29 +25,33 @@
   %br/
   .row
     .col-md-2
-      %strong Ticket No.
+      %strong Location
     .col-md-4
-      = @ticket.id
+      = @ticket.location
+    .col-md-2
+      %strong Created_at
+    .col-md-4
+      = @ticket.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
+  %br/
+  .row
     .col-md-2
       %strong Issue Summary
     .col-md-4
       = @ticket.issue_summary.nil? ? "N/A" : @ticket.issue_summary.name
-  %br/
-  .row
-    .col-md-2
-      %strong Location
-    .col-md-4
-      = @ticket.location
     .col-md-2
       %strong Status
     .col-md-4
       - if current_user.has_role? :admin
         = f.select :status ,[['Open','Open'],['In progress','In Progress'],['Completed','Completed']]
-        = f.submit "Update"
+        = f.submit "Update", class: 'btn btn-primary button'
       - else
         = @ticket.status
   %br/
   .row
+    .col-md-2
+      %strong Issue Details
+    .col-md-4
+      = @ticket.issue_details
     .col-md-2
       %strong File
     .col-md-4
@@ -43,10 +59,6 @@
         = "N/A"
       -else
         = link_to image_tag(@ticket.image.url, class: 'media-object', :style => "height: 50%; width: 100%;"), @ticket.image.url
-    .col-md-2
-      %strong Issue Details
-    .col-md-4
-      = @ticket.issue_details
 
 %br/
 .row

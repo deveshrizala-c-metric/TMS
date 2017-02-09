@@ -7,6 +7,9 @@
       %th Ticket Id
       %th Issue Summary
       %th Status
+      -if current_user.has_role? :admin
+        %th Created By
+      %th Created_at
       %th Action
 
   %tbody
@@ -18,6 +21,11 @@
           = ticket.issue_summary.nil? ? "N/A" : ticket.issue_summary.name
         %td
           = ticket.status
+        -if current_user.has_role? :admin
+          %td
+            = ticket.user.fullname.blank? ? "N/A" : ticket.user.fullname
+        %td
+          = ticket.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
         %td
           = link_to ticket do
             %i.glyphicon.glyphicon-eye-open
