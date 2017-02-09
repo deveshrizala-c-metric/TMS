@@ -6,6 +6,8 @@
     %tr
       %th User Id
       %th Full Name
+      %th Email
+      %th Created_at
       %th Action
 
   %tbody
@@ -15,6 +17,10 @@
           = user.id
         %td
           = user.fullname.blank? ? "N/A" : user.fullname
+        %td
+          = user.email
+        %td
+          = user.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
         %td
           = link_to user do
             %i.glyphicon.glyphicon-eye-open

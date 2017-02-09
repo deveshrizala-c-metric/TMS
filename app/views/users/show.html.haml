@@ -24,6 +24,12 @@
     %strong Email
   .col-md-9
     = @user.email
+%br/
+.row
+  .col-md-3
+    %strong Created At
+  .col-md-9
+    = @user.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
 
 %br/
 = link_to "Back", users_path, class: 'btn btn-primary button'
