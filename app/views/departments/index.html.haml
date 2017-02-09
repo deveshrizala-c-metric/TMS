@@ -6,6 +6,7 @@
     %tr
       %th Department Id
       %th Name
+      %th Created_At
       %th Action
 
   %tbody
@@ -15,6 +16,8 @@
           = department.id
         %td
           = department.name
+        %td
+          = department.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
         %td
           = link_to department do
             %i.glyphicon.glyphicon-eye-open

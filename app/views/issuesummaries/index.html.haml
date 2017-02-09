@@ -6,6 +6,7 @@
     %tr
       %th Issue Summary Id
       %th Name
+      %th Created_At
       %th Action
 
   %tbody
@@ -15,6 +16,8 @@
           = issue_sum.id
         %td
           = issue_sum.name
+        %td
+          = issue_sum.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
         %td
           = link_to issuesummary_path(issue_sum) do
             %i.glyphicon.glyphicon-eye-open

@@ -13,4 +13,11 @@
     = @department.name
 
 %br/
+.row
+  .col-md-3
+    %strong Created At
+  .col-md-9
+    = @department.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
+
+%br/
 = link_to "Back", departments_path, class: 'btn btn-primary button'

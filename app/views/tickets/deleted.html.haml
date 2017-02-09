@@ -1,26 +1,58 @@
 %h1 Deleted Tickets
-
 %br/
-.row
-  .col-md-2
-    %strong Ticket Id
-  .col-md-2
-    %strong Issue_Summary
-  .col-md-3
-    %strong Deleted_At
-  .col-md-5
 
-- @tickets.each do |ticket|
-  %br/
-  .row
-    .col-md-2
-      = ticket.id
-    .col-md-2
-      = ticket.issue_summary.nil? ? "N/A" : ticket.issue_summary.name
-    .col-md-3
-      = ticket.deleted_at
-    .col-md-5
-      -if ticket.user == nil || ticket.department == nil || ticket.issue_summary == nil
-        Restore User and / or Department and / or Issue_Summary First.
-      -else
-        = link_to 'Restore', restore_ticket_path(ticket), class: 'btn btn-primary button'
+%table#myTable.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Ticket Id
+      %th Issue Summary
+      %th Status
+      -if current_user.has_role? :admin
+        %th Created By
+      %th Deleted_At
+      %th Action
+
+  %tbody
+    - @tickets.each do |ticket|
+      %tr
+        %td
+          = ticket.id
+        %td
+          = ticket.issue_summary.nil? ? "N/A" : ticket.issue_summary.name
+        %td
+          = ticket.status
+        -if current_user.has_role? :admin
+          %td
+            = ticket.user.fullname.blank? ? ticket.user.email : ticket.user.fullname
+        %td
+          = ticket.deleted_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
+        %td
+          -if ticket.user == nil || ticket.department == nil || ticket.issue_summary == nil
+            Restore User and / or Department and / or Issue_Summary First.
+          -else
+            = link_to 'Restore', restore_ticket_path(ticket), class: 'btn btn-primary button'
+
+/ %br/
+/ .row
+/   .col-md-2
+/     %strong Ticket Id
+/   .col-md-2
+/     %strong Issue_Summary
+/   .col-md-3
+/     %strong Deleted_At
+/   .col-md-5
+
+/ - @tickets.each do |ticket|
+/   %br/
+/   .row
+/     .col-md-2
+/       = ticket.id
+/     .col-md-2
+/       = ticket.issue_summary.nil? ? "N/A" : ticket.issue_summary.name
+/     .col-md-3
+/       = ticket.deleted_at
+/     .col-md-5
+/       -if ticket.user == nil || ticket.department == nil || ticket.issue_summary == nil
+/         Restore User and / or Department and / or Issue_Summary First.
+/       -else
+/         = link_to 'Restore', restore_ticket_path(ticket), class: 'btn btn-primary button'

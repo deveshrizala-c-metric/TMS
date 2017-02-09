@@ -32,7 +32,7 @@
     .col-md-4
       = @ticket.location
     .col-md-2
-      %strong Created_at
+      %strong Created At
     .col-md-4
       = @ticket.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
   %br/

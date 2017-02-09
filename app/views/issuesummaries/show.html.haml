@@ -13,4 +13,11 @@
     = @issue_sum.name
 
 %br/
+.row
+  .col-md-3
+    %strong Created At
+  .col-md-9
+    = @issue_sum.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
+
+%br/
 = link_to "Back", issuesummaries_path, class: 'btn btn-primary button'
