@@ -9,6 +9,7 @@
       %th Status
       -if current_user.has_role? :admin
         %th Created By
+        %th Location
       %th Created_at
       %th Action
 
@@ -24,6 +25,8 @@
         -if current_user.has_role? :admin
           %td
             = ticket.user.fullname.blank? ? "N/A" : ticket.user.fullname
+          %td
+            = ticket.location
         %td
           = ticket.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
         %td
