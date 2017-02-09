@@ -19,9 +19,9 @@
         %td
           = department.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
         %td
-          = link_to department do
+          = link_to department, class: "tag-tooltip", :data => {:toggle=>"tooltip"}, 'data-original-title' => "View", 'data-placement' => 'right' do
             %i.glyphicon.glyphicon-eye-open
-          = link_to edit_department_path(department) do
+          = link_to edit_department_path(department), class: "tag-tooltip", :data => {:toggle=>"tooltip"}, 'data-original-title' => "Edit", 'data-placement' => 'right' do
             %i.glyphicon.glyphicon-pencil
-          = link_to department, method: :delete, data: { confirm: 'Are you sure you want to delete Department? Once you delete department the tickets related department also deleted?' } do
+          = link_to department, class: "tag-tooltip", :data => {:toggle=>"tooltip"}, 'data-original-title' => "Delete", 'data-placement' => 'right', method: :delete, data: { confirm: 'Are you sure you want to delete Department? Once you delete department the tickets related department also deleted?' } do
             %i.glyphicon.glyphicon-remove

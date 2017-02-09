@@ -30,7 +30,7 @@
         %td
           = ticket.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
         %td
-          = link_to ticket do
+          = link_to ticket, class: "tag-tooltip", :data => {:toggle=>"tooltip"}, 'data-original-title' => "View", 'data-placement' => 'right' do
             %i.glyphicon.glyphicon-eye-open
-          = link_to ticket, method: :delete, data: { confirm: 'Are you sure?' } do
+          = link_to ticket, class: "tag-tooltip", :data => {:toggle=>"tooltip"}, 'data-original-title' => "Delete", 'data-placement' => 'right', method: :delete, data: { confirm: 'Are you sure?' } do
             %i.glyphicon.glyphicon-remove

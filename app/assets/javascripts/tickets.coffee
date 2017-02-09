@@ -22,3 +22,6 @@ $(document).on "turbolinks:load", ->
   'orderable': false
   'targets': -1
   } ]
+
+  $('.tag-tooltip').tooltip()
+
