@@ -11,7 +11,10 @@
     %br/
     = f.text_field :phone
   .field
-    = f.hidden_field :email
+    / = f.hidden_field :email
+    = f.label :email
+    %br/
+    = f.text_field :email, :readonly => true
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
