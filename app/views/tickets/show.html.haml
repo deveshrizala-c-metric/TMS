@@ -17,7 +17,10 @@
       -else
         %strong Name
     .col-md-4
-      = @ticket.user.fullname.blank? ? "N/A" : @ticket.user.fullname
+      -if current_user.has_role? :admin
+        = @ticket.user.fullname.blank? ? @ticket.user.email : @ticket.user.fullname
+      -else
+        = @ticket.user.fullname.blank? ? "N/A" : @ticket.user.fullname
     .col-md-2
       %strong Department
     .col-md-4

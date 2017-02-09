@@ -24,7 +24,7 @@
           = ticket.status
         -if current_user.has_role? :admin
           %td
-            = ticket.user.fullname.blank? ? "N/A" : ticket.user.fullname
+            = ticket.user.fullname.blank? ? ticket.user.email : ticket.user.fullname
           %td
             = ticket.location
         %td
