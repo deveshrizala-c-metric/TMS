@@ -6,24 +6,28 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # POST /resource/password
   def create
-    if validate_email(params[:user][:email])
+    if params[:user][:email].blank?
+      flash[:danger] = "Email can't be blank."
+      redirect_to new_user_password_path
+    else
+      if validate_email(params[:user][:email])
+        user = User.where('email = ?', params[:user][:email]).first
 
-      user = User.where('email = ?', params[:user][:email]).first
-
-      if user.present?
-        unless user.confirmed?
-          flash[:danger] = 'To countinue please confirm your account.'
-          redirect_to new_user_session_path
+        if user.present?
+          unless user.confirmed?
+            flash[:danger] = 'To countinue please confirm your account.'
+            redirect_to new_user_session_path
+          else
+            super
+          end
         else
-          super
+          flash[:danger] = 'User does not exists,so not able to change the password.'
+          redirect_to new_user_password_path
         end
       else
-        flash[:danger] = 'User does not exists,so not able to change the password.'
-        redirect_to new_user_session_path
+        flash[:danger] = 'Invalid Email format.'
+        redirect_to new_user_password_path
       end
-    else
-      flash[:danger] = 'Invalid Email format.'
-      redirect_to new_user_password_path
     end
   end
 
