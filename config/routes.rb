@@ -58,9 +58,15 @@ Rails.application.routes.draw do
   # end
 
   resources :users, only: [:index, :show, :destroy]
-  resources :tickets, only: [:index, :new, :create, :show, :destroy]
-  resources :departments
-  resources :issuesummaries
+  resources :tickets, only: [:index, :new, :show, :destroy], :except => [ :create ] do
+  post "create" => "tickets#create", :as => :create, :path => 'new', :on => :collection
+end
+  resources :departments, :except => [ :create ] do
+  post "create" => "departments#create", :as => :create, :path => 'new', :on => :collection
+end
+  resources :issuesummaries, :except => [ :create ] do
+  post "create" => "issuesummaries#create", :as => :create, :path => 'new', :on => :collection
+end
   resources :posts, only: [:index, :new, :create]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -14,7 +14,7 @@ class IssuesummariesController < ApplicationController
     respond_to do |format|
       if @issue_sum.valid? == false
        flash[:danger] = @issue_sum.errors.full_messages.to_sentence
-       format.html { redirect_to new_issuesummary_path }
+       format.html { render :new }
       else
         if @issue_sum.save
           flash[:success] = 'Issue_Summary created successfully'

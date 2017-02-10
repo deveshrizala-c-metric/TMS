@@ -20,25 +20,3 @@
           = department.deleted_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
         %td
           = link_to 'Restore', restore_department_path(department), class: 'btn btn-primary button'
-
-/ %br/
-/ .row
-/   .col-md-2
-/     %strong Department Id
-/   .col-md-2
-/     %strong Name
-/   .col-md-4
-/     %strong Deleted_At
-/   .col-md-2
-
-/ - @departments.each do |department|
-/   %br/
-/   .row
-/     .col-md-2
-/       = department.id
-/     .col-md-2
-/       = department.name
-/     .col-md-4
-/       = department.deleted_at
-/     .col-md-2
-/       = link_to 'Restore', restore_department_path(department), class: 'btn btn-primary button'

@@ -2,7 +2,8 @@
 %p
   Please fill in the form below to open a new ticket.
 %br/
-= form_for(@ticket, url: {action: "create"}) do |f|
+/ = form_for(@ticket, url: {action: "create"}) do |f|
+= form_for(@ticket, url: create_tickets_path) do |f|
   .row
     .col-md-2
       = f.label :department

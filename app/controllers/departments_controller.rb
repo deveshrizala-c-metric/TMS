@@ -15,7 +15,7 @@ class DepartmentsController < ApplicationController
     respond_to do |format|
       if @department.valid? == false
        flash[:danger] = @department.errors.full_messages.to_sentence
-       format.html { redirect_to new_department_path }
+       format.html { render :new }
       else
         if @department.save
           flash[:success] = 'Department created successfully'
