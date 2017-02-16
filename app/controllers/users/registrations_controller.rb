@@ -18,9 +18,9 @@ before_action :configure_permitted_parameters, if: :devise_controller?
       flash[:danger] = 'User Deleted. Please Contact Admin.'
       redirect_to new_user_session_path
     else
-      if valid_email(params[:user][:email]) == true
+      # if valid_email(params[:user][:email]) == true
         super
-      end
+      # end
     end
   end
 
@@ -30,11 +30,11 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   # end
 
   # PUT /resource
-  def update
-    if valid_email(params[:user][:email])
-      super
-    end
-  end
+  # def update
+  #   if valid_email(params[:user][:email])
+  #     super
+  #   end
+  # end
 
   # DELETE /resource
   # def destroy
@@ -93,12 +93,14 @@ before_action :configure_permitted_parameters, if: :devise_controller?
     if email.blank?
         flash[:danger] = 'Email can not be blank.'
         redirect_to new_user_registration_path
+        # render :new
     else
       if validate_email(email)
         true
       else
         flash[:danger] = 'Invaild Email Format.'
         redirect_to new_user_registration_path
+        # render :new
       end
     end
   end

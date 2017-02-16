@@ -6,18 +6,24 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # POST /resource/password
   def create
-    user = User.where('email = ?', params[:user][:email]).first
+    if validate_email(params[:user][:email])
 
-    if user.present?
-      unless user.confirmed?
-        flash[:danger] = 'To countinue please confirm your account.'
-        redirect_to new_user_session_path
+      user = User.where('email = ?', params[:user][:email]).first
+
+      if user.present?
+        unless user.confirmed?
+          flash[:danger] = 'To countinue please confirm your account.'
+          redirect_to new_user_session_path
+        else
+          super
+        end
       else
-        super
+        flash[:danger] = 'User does not exists,so not able to change the password.'
+        redirect_to new_user_session_path
       end
     else
-      flash[:danger] = 'User does not exists,so not able to change the password.'
-      redirect_to new_user_session_path
+      flash[:danger] = 'Invalid Email format.'
+      redirect_to new_user_password_path
     end
   end
 
@@ -41,4 +47,8 @@ class Users::PasswordsController < Devise::PasswordsController
   # def after_sending_reset_password_instructions_path_for(resource_name)
   #   super(resource_name)
   # end
+
+  def validate_email(email)
+    (email =~ /^(([A-Za-z0-9])\w+(\.?|\-?|\+))+@{1}(([A-Za-z])\w*-?([A-Za-z])\w*?\.{1}){1,2}([A-Za-z])\w+$/) ? true : false
+  end
 end
