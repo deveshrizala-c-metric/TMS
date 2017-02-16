@@ -12,7 +12,6 @@ class Users::PasswordsController < Devise::PasswordsController
     else
       if validate_email(params[:user][:email])
         user = User.where('email = ?', params[:user][:email]).first
-
         if user.present?
           unless user.confirmed?
             flash[:danger] = 'To countinue please confirm your account.'
