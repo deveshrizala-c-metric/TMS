@@ -19,15 +19,13 @@ class TicketsController < ApplicationController
 
     respond_to do |format|
       if @ticket.valid? == false
-       flash[:danger] = @ticket.errors.full_messages.to_sentence
-       format.html { render :new }
+        format.html { render :new }
       else
         if @ticket.save
           flash[:success] = 'Ticket created successfully'
           format.html { redirect_to tickets_path }
         else
           flash[:danger] = 'There is a problem in creating the ticket'
-          # format.html { redirect_to new_ticket_path }
           format.html { render :new }
         end
       end

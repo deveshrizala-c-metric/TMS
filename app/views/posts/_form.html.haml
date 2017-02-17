@@ -1,0 +1,11 @@
+= form_for(@post) do |fp|
+
+  = fp.label :Post
+  = fp.text_area :description, :class => "tinymce", :rows => 8
+  = fp.hidden_field :ticket_id, :value => @ticket.id
+  = fp.hidden_field :user_id, :value => current_user.id
+
+  %br/
+  = fp.submit "Post", class: 'btn btn-primary'
+  = fp.button "Reset", type: :reset, class: "btn btn-primary"
+  = link_to "Back", tickets_path , class: 'btn btn-primary button', id: 'back-button'

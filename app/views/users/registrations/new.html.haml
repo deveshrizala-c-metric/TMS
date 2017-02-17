@@ -3,7 +3,14 @@
   Use the forms below to create or update the information we have on file for your account
 
 = form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :id => "clientLogin" }) do |f|
-  = devise_error_messages!
+
+  - if @user.errors.any?
+    .alert.alert-error
+      - @user.errors.full_messages.each do |message|
+        %li= message
+        %br
+    %br
+
   .field
     = f.label :fullname
     %br/

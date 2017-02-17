@@ -9,17 +9,13 @@ class PostsController < ApplicationController
 
     if params.permit!
       respond_to do |format|
-        if @ticket.posts.new(params[:post]).valid? == false
-         flash[:danger] = "Post isn't valid"
-         format.html { redirect_to @ticket }
+        @post = @ticket.posts.new(params[:post])
+        if @post.save
+          flash[:success] = 'Post created successfully'
+          format.html { redirect_to @ticket }
         else
-          if @ticket.posts.new(params[:post]).save
-            flash[:success] = 'Post created successfully'
-            format.html { redirect_to @ticket }
-          else
-            flash[:danger] = 'There is a problem in creating the post'
-            format.html { redirect_to @ticket }
-          end
+          flash[:danger] = @post.errors.full_messages.to_sentence
+          format.html { redirect_to ticket_path(@ticket) }
         end
       end
     end

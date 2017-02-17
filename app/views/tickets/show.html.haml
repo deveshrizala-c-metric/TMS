@@ -1,5 +1,5 @@
 %h1 Show a Ticket
-= form_for @ticket, :url => {:controller => 'tickets', :action => 'update_status'}, method: :put do |f|
+= form_for @ticket, url: update_status_ticket_path(@ticket), method: :put do |f|
   %br/
   .row
     .col-md-2
@@ -75,16 +75,6 @@
 %br/
 .row
   .col-md-10
-    = form_for(@post, url: {:controller => 'posts', action: "create"}) do |fp|
-      = fp.label :Post
-      = fp.text_area :description, :class => "tinymce", :rows => 8
-      = fp.hidden_field :ticket_id, :value => @ticket.id
-      = fp.hidden_field :user_id, :value => current_user.id
-
-      %br/
-      = fp.submit "Post", class: 'btn btn-primary'
-      = fp.button "Reset", type: :reset, class: "btn btn-primary"
-      = link_to "Back", tickets_path , class: 'btn btn-primary button', id: 'back-button'
-
+    = render :partial => "posts/form"
 
 = tinymce

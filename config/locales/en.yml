@@ -21,3 +21,14 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      post:
+        description: "Post"
+    errors:
+      models:
+        post:
+          attributes:
+            description:
+              blank: "can't be blank"
+              length: "maximum is 255 characters"

@@ -2,13 +2,21 @@
 %p
   Please fill in the form below to open a new ticket.
 %br/
-/ = form_for(@ticket, url: {action: "create"}) do |f|
+
 = form_for(@ticket, url: create_tickets_path) do |f|
+
+  - if @ticket.errors.any?
+    .alert.alert-error
+      - @ticket.errors.full_messages.each do |message|
+        %li= message
+        %br
+    %br
+
   .row
     .col-md-2
       = f.label :department
       = "*"
-    .col-md-9
+    .col-md-10
       = f.collection_select :department_id, Department.all, :id, :name, autofocus: true, prompt: 'Select'
   .row
     .col-md-2
@@ -34,14 +42,14 @@
     .col-md-2
       = f.label :issue_summary
       = "*"
-    .col-md-9
+    .col-md-10
       = f.collection_select :issue_summary_id, IssueSummary.all, :id, :name, prompt: 'Select'
   .row
     .col-md-2
       = f.label :issue_details
       = "*"
   .row
-    .col-md-9
+    .col-md-10
       = f.text_area :issue_details, :class => "tinymce", :rows => 10, :cols => 60
   %br/
   .row
