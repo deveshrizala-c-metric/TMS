@@ -22,6 +22,7 @@ class TicketsController < ApplicationController
         format.html { render :new }
       else
         if @ticket.save
+          TicketMailer.ticket_email(@ticket).deliver
           flash[:success] = 'Ticket created successfully'
           format.html { redirect_to tickets_path }
         else
