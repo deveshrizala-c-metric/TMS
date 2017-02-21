@@ -17,11 +17,10 @@ $(document).on "turbolinks:load", ->
     else
       $('#' + window.location.href.split('/')[3]).addClass 'active'
 
-
-  $('#myTable').dataTable 'columnDefs': [ {
-  'orderable': false
-  'targets': -1
-  } ]
-
   $('.tag-tooltip').tooltip()
 
+  if $('#myTable').length > 0 and !$('#myTable_wrapper').length > 0
+    $('#myTable').dataTable 'columnDefs': [ {
+      'orderable': false
+      'targets': -1
+    } ]
