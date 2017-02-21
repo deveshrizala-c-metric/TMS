@@ -2,8 +2,7 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
-    %h3
-      Hi #{@users.first.fullname.blank? ? @users.first.email : @users.first.fullname},
+    Hi #{@users.first.fullname.blank? ? @users.first.email : @users.first.fullname},
     %p
       New Ticket Created by
       %strong
