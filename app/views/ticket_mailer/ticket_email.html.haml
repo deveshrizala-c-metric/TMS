@@ -2,10 +2,12 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
-    %h1
-      Hi #{@ticket.user.fullname}
+    %h3
+      Hi #{@users.first.fullname.blank? ? @users.first.email : @users.first.fullname},
     %p
-      Your Ticket Created Successfully
+      New Ticket Created by
+      %strong
+        #{@ticket.user.fullname.blank? ? @ticket.user.email : @ticket.user.fullname}
     %br
       Created At:
       = @ticket.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
