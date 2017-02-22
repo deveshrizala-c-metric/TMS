@@ -28,5 +28,5 @@ $(document).on "turbolinks:load", ->
       'targets': -1
       'stateSave': true
     } ]
-    table = $('#myTable').dataTable
-    table.draw(false);
+    table = $('#myTable').DataTable()
+    table.draw(true);
