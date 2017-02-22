@@ -8,14 +8,17 @@ $(document).on 'turbolinks:request-end', ->
   return
 
 $(document).on "turbolinks:load", ->
+  locationName = window.location.href.split('/')[3].replace('#','')
+  if typeof window.location.href.split('/')[4] != 'undefined'
+    secondUrl = window.location.href.split('/')[4].replace('#','')
 
-  if window.location.href.split('/')[3] == ''
+  if locationName == ''
     $('#home').addClass 'active'
   else
-    if window.location.href.split('/')[3] == 'users' and (window.location.href.split('/')[4] == 'edit' or window.location.href.split('/')[4] == 'sign_out' or window.location.href.split('/')[4] == 'sign_in')
-      $('#user_profile').addClass 'active'
-    else
-      $('#' + window.location.href.split('/')[3]).addClass 'active'
+     if locationName == 'users' and (secondUrl == 'edit' or secondUrl == 'sign_out' or secondUrl == 'sign_in')
+       $('#user_profile').addClass 'active'
+     else
+       $('#' + locationName).addClass 'active'
 
   $('.tag-tooltip').tooltip()
 
@@ -23,4 +26,7 @@ $(document).on "turbolinks:load", ->
     $('#myTable').dataTable 'columnDefs': [ {
       'orderable': false
       'targets': -1
+      'stateSave': true
     } ]
+    table = $('#myTable').dataTable
+    table.draw(false);
