@@ -26,7 +26,4 @@ $(document).on "turbolinks:load", ->
     $('#myTable').dataTable 'columnDefs': [ {
       'orderable': false
       'targets': -1
-      'stateSave': true
     } ]
-    table = $('#myTable').DataTable()
-    table.draw(true);
