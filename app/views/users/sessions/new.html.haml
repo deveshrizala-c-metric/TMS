@@ -5,11 +5,11 @@
   .field
     = f.label :email
     %br/
-    = f.email_field :email, autofocus: true, size: "30"
+    = f.email_field :email, autofocus: true, size: "30", class: "form-control", placeholder: "example@example.com"
   .field
     = f.label :password
     %br/
-    = f.password_field :password, autocomplete: "off", size: "30"
+    = f.password_field :password, autocomplete: "off", size: "30", class: "form-control"
   - if devise_mapping.rememberable?
     .field
       = f.check_box :remember_me

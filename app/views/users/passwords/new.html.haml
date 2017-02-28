@@ -5,7 +5,7 @@
   .field
     = f.label :email
     %br/
-    = f.email_field :email, autofocus: true
+    = f.email_field :email, autofocus: true, class: "form-control", placeholder: "example@example.com"
   %br/
   .actions
     = f.submit "Send me reset password instructions", class: 'btn btn-primary', id: 'reset_password'

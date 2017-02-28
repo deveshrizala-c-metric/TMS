@@ -1,7 +1,14 @@
 %h1 Change your password
 %br
 = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, :id => "clientLogin" }) do |f|
-  = devise_error_messages!
+
+  - if @user.errors.any?
+    .alert.alert-error
+      - @user.errors.full_messages.each do |message|
+        %li= message
+        %br
+    %br
+
   = f.hidden_field :reset_password_token
   .field
     = f.label :password, "New password"
@@ -10,11 +17,11 @@
       %em
         (#{@minimum_password_length} characters minimum)
       %br/
-    = f.password_field :password, autofocus: true, autocomplete: "off"
+    = f.password_field :password, autofocus: true, autocomplete: "off", class: "form-control"
   .field
     = f.label :password_confirmation, "Confirm new password"
     %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
+    = f.password_field :password_confirmation, autocomplete: "off", class: "form-control"
   %br/
   .actions
     = f.submit "Change my password", class: 'btn btn-primary'

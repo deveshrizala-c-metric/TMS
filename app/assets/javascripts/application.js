@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require jquery.dataTables.js
 //= require dataTables.bootstrap.js
+//= require fileinput
 //= require tinymce
 //= require turbolinks
 //= require_tree .

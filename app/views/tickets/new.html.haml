@@ -17,7 +17,9 @@
       = f.label :department
       = "*"
     .col-md-10
-      = f.collection_select :department_id, Department.all, :id, :name, autofocus: true, prompt: 'Select'
+      = f.collection_select :department_id, Department.all, :id, :name, {prompt: 'Select'} ,
+      { class: "form-control", autofocus: true }
+
   .row
     .col-md-2
       = f.label :email
@@ -43,7 +45,8 @@
       = f.label :issue_summary
       = "*"
     .col-md-10
-      = f.collection_select :issue_summary_id, IssueSummary.all, :id, :name, prompt: 'Select'
+      = f.collection_select :issue_summary_id, IssueSummary.all, :id, :name, {prompt: 'Select'} ,
+      { class: "form-control", autofocus: true }
   .row
     .col-md-2
       = f.label :issue_details
@@ -56,13 +59,13 @@
     .col-md-2
       =f.label :image
     .col-md-10
-      =f.file_field :image
+      = f.file_field :image, class: "file"
   .row
     .col-md-2
       = f.label :location
       = "*"
     .col-md-10
-      = f.select :location, [['Ahemdabad','Ahemdabad'],['Gandhinagar','Gandhinagar'],['US Office','US Office']], prompt: 'Select'
+      = f.select :location, [['Ahemdabad','Ahemdabad'],['Gandhinagar','Gandhinagar'],['US Office','US Office']], {prompt: 'Select'}, { class: "form-control", autofocus: true }
   .row
     .col-md-2
       = f.label :Status
