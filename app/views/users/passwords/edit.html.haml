@@ -2,13 +2,6 @@
 %br
 = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, :id => "clientLogin" }) do |f|
 
-  - if @user.errors.any?
-    .alert.alert-error
-      - @user.errors.full_messages.each do |message|
-        %li= message
-        %br
-    %br
-
   = f.hidden_field :reset_password_token
   .field
     = f.label :password, "New password"

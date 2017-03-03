@@ -4,13 +4,6 @@
 
 = form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :id => "clientLogin", class: "user-form" }) do |f|
 
-  - if @user.errors.any?
-    .alert.alert-error
-      - @user.errors.full_messages.each do |message|
-        %li= message
-        %br
-    %br
-
   .field
     = f.label :fullname
     %br/

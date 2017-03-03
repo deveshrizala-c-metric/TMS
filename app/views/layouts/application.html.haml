@@ -7,70 +7,59 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-
-    / %p.notice= notice
-    / %p.alert= alert
-    / = yield
-
-    #container
-      #header
-      .clear
-      %nav.navbar.navbar-inverse
-        .container-fluid
-          / Brand and toggle get grouped for better mobile display
+    #header
+      .navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+        .container
           .navbar-header
-            %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+            %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
               %span.sr-only Toggle navigation
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-            .navbar-brand C-Metric
-          / Collect the nav links, forms, and other content for toggling
-          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            %a.navbar-brand{:href => "index.html"} C-Metric
+          .navbar-collapse.collapse.navbar-right
             %div{"data-turbolinks" => "false"}
               %ul.nav.navbar-nav
-                %li#home.nav-li
-                  %a.cus-navbar{:href => "/home"} Home
+                %li#home
+                  %a{:href => "/home"} HOME
                 -if current_user
                   -if current_user.has_role? :admin
-                    %li#users.dropdown.nav-li
-                      %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                        User
-                        %span.caret
+                    %li#users.dropdown
+                      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                        USER
+                        %b.caret
                       %ul.dropdown-menu
                         %li
                           %a{:href => "/users"} List
-                          %li.divider{:role => "separator"}
                         %li
                           %a{:href => "/users/deleted"} Deleted
-                    %li#departments.dropdown.nav-li
-                      %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                        Department
-                        %span.caret
+                    %li#departments.dropdown
+                      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                        DEPARTMENT
+                        %b.caret
                       %ul.dropdown-menu
                         %li
                           %a{:href => "/departments"} List
-                          %li.divider{:role => "separator"}
                         %li
                           %a{:href => "/departments/new"} New
                         %li
                           %a{:href => "/departments/deleted"} Deleted
-                    %li#issuesummaries.dropdown.nav-li
-                      %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                        Issue Summary
-                        %span.caret
+                    %li#issuesummaries.dropdown
+                      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                        ISSUE SUMMARY
+                        %b.caret
                       %ul.dropdown-menu
                         %li
                           %a{:href => "/issuesummaries"} List
-                          %li.divider{:role => "separator"}
                         %li
                           %a{:href => "/issuesummaries/new"} New
                         %li
                           %a{:href => "/issuesummaries/deleted"} Deleted
-                  %li#tickets.dropdown.nav-li
-                    %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                      Ticket
-                      %span.caret
+
+                  %li#tickets.dropdown
+                    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                      TICKET
+                      %b.caret
                     %ul.dropdown-menu
                       %li
                         %a{:href => "/tickets"} List
@@ -78,25 +67,31 @@
                         %a{:href => "/tickets/new"} New
                       %li
                         %a{:href => "/tickets/deleted"} Deleted
-            %ul.nav.navbar-nav.navbar-right
-              %li#user_profile.dropdown
-                - if current_user
-                  %a.cus-navbar.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                    = current_user.fullname.blank? ? current_user.email : current_user.fullname
-                    %span.caret
-                  %ul.dropdown-menu
-                    %li
-                      %a{:href => "/users/edit"} Profile
-                    %li.divider{:role => "separator"}
-                    %li
-                      = link_to 'Sign out', destroy_user_session_path , :method => :delete
-                - else
-                  %a{:href => "/users/sign_in"}Sign in
-      #content
-        .row
-        - flash.each do |name, msg|
-          = content_tag :div, msg, class: "alert alert-#{name}"
-        = yield
+                %li#user_profile.dropdown
+                  - if current_user
+                    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                      = current_user.fullname.blank? ? current_user.email : current_user.fullname
+                      %b.caret
+                    %ul.dropdown-menu
+                      %li
+                        %a{:href => "/users/edit"} Profile
+                      %li.divider{:role => "separator"}
+                      %li
+                        = link_to 'Sign out', destroy_user_session_path , :method => :delete
+                  - else
+                    %a{:href => "/users/sign_in"}SIGN IN
 
-    #footer
-      %p Copyright © 2016 C-Metric - All rights reserved.
+    #content
+      .row
+        .col-xs-2
+        .col-xs-8
+          = render 'layouts/flash_messages'
+          = yield
+        .col-xs-2
+
+    #footerwrap
+      .row
+        .col-lg-4
+          %h4 About
+          .hline-w
+          %p A ticket management system is specifically designed to report various issues.

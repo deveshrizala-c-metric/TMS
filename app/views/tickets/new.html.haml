@@ -5,13 +5,6 @@
 
 = form_for(@ticket, url: create_tickets_path) do |f|
 
-  - if @ticket.errors.any?
-    .alert.alert-error
-      - @ticket.errors.full_messages.each do |message|
-        %li= message
-        %br
-    %br
-
   .row
     .col-md-2
       = f.label :department

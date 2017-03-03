@@ -2,13 +2,6 @@
 %br
 = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, :id => "clientLogin" }) do |f|
 
-  - if @user.errors.any?
-    .alert.alert-error
-      - @user.errors.full_messages.each do |message|
-        %li= message
-        %br
-    %br
-
   .field
     = f.label :email
     %br/

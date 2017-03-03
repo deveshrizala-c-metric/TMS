@@ -13,7 +13,7 @@ class IssuesummariesController < ApplicationController
     @issue_sum = IssueSummary.new(issue_sum_params)
     respond_to do |format|
       if @issue_sum.valid? == false
-       flash[:danger] = @issue_sum.errors.full_messages.to_sentence
+       flash.now[:danger] = @issue_sum.errors.full_messages.to_sentence
        format.html { render :new }
       else
         if @issue_sum.save
@@ -43,7 +43,7 @@ class IssuesummariesController < ApplicationController
         flash[:success] = 'IssueSummary was successfully updated.'
         format.html { redirect_to issuesummary_path }
       else
-        flash[:danger] = @issue_sum.errors.full_messages.to_sentence
+        flash.now[:danger] = @issue_sum.errors.full_messages.to_sentence
         format.html { render :edit }
       end
     end

@@ -1,0 +1,16 @@
+- flash.each do |name, msg|
+  = content_tag :div, msg, class: "alert alert-#{name}"
+
+- if @ticket && @ticket.errors.any?
+  .alert.alert-error
+    - @ticket.errors.full_messages.each do |message|
+      = message
+      %br
+  %br
+
+- if @user && @user.errors.any?
+  .alert.alert-error
+    - @user.errors.full_messages.each do |message|
+      = message
+      %br
+  %br
