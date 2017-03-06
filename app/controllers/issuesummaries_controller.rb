@@ -1,6 +1,8 @@
 class IssuesummariesController < ApplicationController
   before_action :authenticate_user!
 
+  load_and_authorize_resource :class => IssueSummary
+
   def index
     @issue_sums = IssueSummary.all
   end

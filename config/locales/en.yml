@@ -32,3 +32,10 @@ en:
             description:
               blank: "can't be blank"
               length: "maximum is 255 characters"
+
+  unauthorized:
+    manage:
+      all: "You need to be admin"
+      user: "Not allowed to manage other user accounts."
+    update:
+      project: "Not allowed to update this project."
