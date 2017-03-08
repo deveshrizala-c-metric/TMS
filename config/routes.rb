@@ -122,4 +122,7 @@ end
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  get "*path" => redirect("/404")
+
 end
