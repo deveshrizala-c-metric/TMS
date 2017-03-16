@@ -29,7 +29,7 @@
       = f.label :password
       %i (leave blank if you don't want to change it)
       %br/
-      = f.password_field :password, autocomplete: "off", class: "form-control password_validation", minlength: 6, maxlength: 30
+      = f.password_field :password, autocomplete: "off", class: "form-control password_validation", minlength: 6, maxlength: 15
       - if @minimum_password_length
         %em
           = @minimum_password_length
@@ -39,7 +39,7 @@
     .field
       = f.label :password_confirmation
       %br/
-      = f.password_field :password_confirmation, autocomplete: "off", class: "form-control password_validation confirm_password_validation", minlength: 6, maxlength: 30
+      = f.password_field :password_confirmation, autocomplete: "off", class: "form-control password_validation confirm_password_validation", minlength: 6, maxlength: 15
 
   .form-group
     .field
@@ -47,7 +47,7 @@
       %br/
       %i (we need your current password to confirm your changes)
       %br/
-      = f.password_field :current_password, autocomplete: "off", class: "form-control require_validation password_validation c_password_size", minlength: 6, maxlength: 30
+      = f.password_field :current_password, autocomplete: "off", class: "form-control require_validation password_validation", minlength: 6, maxlength: 15
 
   %br
   .actions

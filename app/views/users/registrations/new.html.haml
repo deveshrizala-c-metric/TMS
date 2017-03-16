@@ -29,13 +29,13 @@
         %em
           (#{@minimum_password_length} characters minimum)
       %br/
-      = f.password_field :password, autocomplete: "off", class: "form-control require_validation password_validation", minlength: 6, maxlength: 30
+      = f.password_field :password, autocomplete: "off", class: "form-control require_validation password_validation", minlength: 6, maxlength: 15
 
   .form-group
     .field
       = f.label :password_confirmation
       %br/
-      = f.password_field :password_confirmation, autocomplete: "off", class: "form-control require_validation password_validation confirm_password_validation", minlength: 6, maxlength: 30
+      = f.password_field :password_confirmation, autocomplete: "off", class: "form-control require_validation password_validation confirm_password_validation", minlength: 6, maxlength: 15
 
   %br/
   .actions
