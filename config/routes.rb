@@ -2,11 +2,11 @@ Rails.application.routes.draw do
 
   devise_for :users,
         controllers: {
-        sessions: 'users/sessions',
-        registrations: 'users/registrations',
-        passwords: 'users/passwords',
-        confirmations: 'users/confirmations'
-      }
+          sessions: 'users/sessions',
+          registrations: 'users/registrations',
+          passwords: 'users/passwords',
+          confirmations: 'users/confirmations'
+        }
 
   get 'home', to: 'home#index'
 
@@ -52,10 +52,6 @@ Rails.application.routes.draw do
       get 'deleted'
     end
   end
-
-  # devise_scope :user do
-  #   root 'users/sessions#new'
-  # end
 
   resources :users, only: [:index, :show, :destroy]
   resources :tickets, only: [:index, :new, :show, :destroy], :except => [ :create ] do

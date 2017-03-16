@@ -3,7 +3,7 @@
   Please fill in the form below to open a new ticket.
 %br/
 
-= form_for(@ticket, url: create_tickets_path) do |f|
+= form_for @ticket, url: create_tickets_path , html: { class: "clientside_validation" } do |f|
 
   .row
     .col-md-2
@@ -11,7 +11,7 @@
       = "*"
     .col-md-10
       = f.collection_select :department_id, Department.all, :id, :name, {prompt: 'Select'} ,
-      { class: "form-control", autofocus: true }
+      { class: "form-control require_validation", autofocus: true }
 
   .row
     .col-md-2
@@ -39,14 +39,14 @@
       = "*"
     .col-md-10
       = f.collection_select :issue_summary_id, IssueSummary.all, :id, :name, {prompt: 'Select'} ,
-      { class: "form-control", autofocus: true }
+      { class: "form-control require_validation"}
   .row
     .col-md-2
       = f.label :issue_details
       = "*"
   .row
     .col-md-10
-      = f.text_area :issue_details, :class => "tinymce", :rows => 10, :cols => 60
+      = f.text_area :issue_details, :class => "tinymce require_validation", :rows => 10, :cols => 60
   %br/
   .row
     .col-md-2
@@ -58,7 +58,7 @@
       = f.label :location
       = "*"
     .col-md-10
-      = f.select :location, [['Ahemdabad','Ahemdabad'],['Gandhinagar','Gandhinagar'],['US Office','US Office']], {prompt: 'Select'}, { class: "form-control", autofocus: true }
+      = f.select :location, [['Ahemdabad','Ahemdabad'],['Gandhinagar','Gandhinagar'],['US Office','US Office']], {prompt: 'Select'}, { class: "form-control require_validation"}
   .row
     .col-md-2
       = f.label :Status

@@ -1,13 +1,14 @@
 %h1 New Department
 %br
 
-= form_for(@department, url: create_departments_path) do |f|
+= form_for @department, url: create_departments_path, html: { class: "clientside_validation" } do |f|
   .row
-    .col-md-2
-      = f.label :name
-      = "*"
-    .col-md-10
-      = f.text_field :name, class: "form-control"
+    .form-group
+      .col-md-2
+        = f.label :name
+        = "*"
+      .col-md-10
+        = f.text_field :name, class: "form-control require_validation length_validation", maxlength: "20"
   %br/
   .row
     .col-md-6

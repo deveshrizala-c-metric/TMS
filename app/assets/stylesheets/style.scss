@@ -507,7 +507,7 @@ csmall2 {
 }
 
 .form-control {
-  width: auto;
+  width: 30%;
 }
 
 .file-caption-main {
@@ -591,4 +591,10 @@ element.style {
   border-color: #d6e9c6;
   color: #468847;
   text-align: left;
+}
+
+.error
+{
+  color: red;
+  font-weight: normal;
 }

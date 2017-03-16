@@ -1,19 +1,22 @@
 %h1 Sign in to C-Metric
 %p To better serve you, we encourage our Clients to register for an account.
 
-= form_for(resource, as: resource_name, url: session_path(resource_name), :html => { :id => "clientLogin" }) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, size: "30", class: "form-control", placeholder: "example@example.com"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "off", size: "30", class: "form-control"
-  - if devise_mapping.rememberable?
+= form_for(resource, as: resource_name, url: session_path(resource_name), :html => { :id => "clientLogin", class: 'clientside_validation' }) do |f|
+  .form-group
     .field
-      = f.check_box :remember_me
-      = f.label :remember_me
+      = f.label :email
+      %br/
+      = f.email_field :email, autofocus: true, class: "form-control require_validation email_validation", placeholder: "example@example.com"
+
+  .form-group
+    .field
+      = f.label :password
+      %br/
+      = f.password_field :password, autocomplete: "off", class: "form-control require_validation password_validation", minlength: 6, maxlength: 30
+    - if devise_mapping.rememberable?
+      .field
+        = f.check_box :remember_me
+        = f.label :remember_me
   .actions
     = f.submit "Log in", class: 'btn btn-primary'
     %p

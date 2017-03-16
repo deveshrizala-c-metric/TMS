@@ -1,13 +1,14 @@
 %h1 Resend confirmation instructions
 %br
-= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, :id => "clientLogin" }) do |f|
+= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, :id => "clientLogin", class: "clientside_validation" }) do |f|
 
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "form-control", placeholder: "example@example.com"
+  .form-group
+    .field
+      = f.label :email
+      %br/
+      = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "form-control require_validation email_validation", placeholder: "example@example.com"
   %br/
   .actions
-    = f.submit "Resend confirmation instructions", class: 'btn btn-primary', id: 'resend_confirmation'
+    = f.submit "Resend confirmation instructions", class: 'btn btn-primary preserve_email'
   %p
     = render "users/shared/links"

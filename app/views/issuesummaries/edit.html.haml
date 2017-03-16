@@ -1,12 +1,14 @@
-%h1 Issue Summary Edit
+%h1 Edit Issue Summary
 %br
 
-= form_for(@issue_sum, url: {action: "update"}) do |f|
+= form_for @issue_sum, url: {action: "update"}, html: { class: "clientside_validation" } do |f|
   .row
-    .col-md-2
-      = f.label :name
-    .col-md-10
-      = f.text_field :name, class: "form-control"
+    .form-group
+      .col-md-2
+        = f.label :name
+        = "*"
+      .col-md-10
+        = f.text_field :name, class: "form-control require_validation length_validation", maxlength: "20"
   .row
     .col-md-6
       .actions
