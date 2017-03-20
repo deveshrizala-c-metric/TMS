@@ -52,7 +52,8 @@
     .col-md-2
       =f.label :image
     .col-md-10
-      = f.file_field :image, class: "file"
+      = f.file_field :image, class: "file image_validation"
+      / = f.file_field :image, class: "image_validation"
   .row
     .col-md-2
       = f.label :location

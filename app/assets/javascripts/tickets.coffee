@@ -35,7 +35,17 @@ $(document).on "turbolinks:load", ->
     ).validate(
       ignore: ''
       rules:
-        issue_details: 'required')
+        issue_details: 'required'
+      errorPlacement: (label, element) ->
+        # position error label after generated textarea
+        if element.is('textarea')
+          label.insertAfter element
+        else if element.attr('id') == 'ticket_image'
+           label.insertAfter ".file-input-new"
+        else
+          label.insertAfter element
+        return
+      )
     return
 
   $.validator.addMethod 'regx', ((value, element, regexpr) ->
@@ -53,11 +63,14 @@ $(document).on "turbolinks:load", ->
         regx: /^([A-z])+((\.|\-)?([A-z]|[0-9])+)*@{1}[A-z]+(\-?[A-z])*(\.[A-z]+)+$/
       password_validation:
         minlength: 6
-        maxlength: 30
+        maxlength: 15
       confirm_password_validation: {
         equalTo: "#user_password"
         }
       phone_validation:
         digits: true
         maxlength: 15
+      image_validation:
+        required: true
+        extension: "jpg|jpeg|png"
   return
