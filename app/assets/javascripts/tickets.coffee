@@ -52,6 +52,10 @@ $(document).on "turbolinks:load", ->
     regexpr.test value
   ), 'Please enter a valid email address.'
 
+  $.validator.addMethod 'filesize', ((value, element, param) ->
+    @optional(element) or element.files[0].size <= param
+  ), 'File size must be less than 5mb'
+
   $('.clientside_validation').validate rules:
     jQuery.validator.addClassRules
       require_validation:
@@ -71,6 +75,6 @@ $(document).on "turbolinks:load", ->
         digits: true
         maxlength: 15
       image_validation:
-        required: true
         extension: "jpg|jpeg|png"
+        filesize: 5242880
   return

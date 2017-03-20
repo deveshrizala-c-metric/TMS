@@ -109,6 +109,10 @@ a:focus {
 	color: white;
 }
 
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #00b3fe;
+}
+
 .navbar-default .navbar-nav > li > a {
 	color: white;
 	font-weight: 700;

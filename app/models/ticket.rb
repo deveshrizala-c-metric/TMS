@@ -17,5 +17,5 @@ class Ticket < ActiveRecord::Base
   validates :issue_details, presence: true, length: { maximum: 255 }
   validates :location, presence: true
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-  validates_attachment_size :image, :less_than => 10.megabytes
+  validates_attachment_size :image, :less_than => 5.megabytes
 end
