@@ -1,0 +1,27 @@
+%h1 Issue Summaries
+%br/
+
+%table#myTable.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th Issue Summary Id
+      %th Name
+      %th Created_At
+      %th Action
+
+  %tbody
+    - @issue_sums.each do |issue_sum|
+      %tr
+        %td
+          = issue_sum.id
+        %td
+          = issue_sum.name
+        %td
+          = issue_sum.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
+        %td
+          = link_to issue_summary_path(issue_sum), class: "tag-tooltip", :data => {:toggle=>"tooltip"}, 'data-original-title' => "View", 'data-placement' => 'right' do
+            %i.glyphicon.glyphicon-eye-open
+          = link_to edit_issue_summary_path(issue_sum), class: "tag-tooltip", :data => {:toggle=>"tooltip"}, 'data-original-title' => "Edit", 'data-placement' => 'right' do
+            %i.glyphicon.glyphicon-pencil
+          = link_to issue_summary_path(issue_sum), class: "tag-tooltip", :data => {:toggle=>"tooltip"}, 'data-original-title' => "Delete", 'data-placement' => 'right', method: :delete, data: { confirm: ' Are you sure you want to delete this Issue Summary? All the tickets related to this issue summary will also be deleted !' } do
+            %i.glyphicon.glyphicon-remove

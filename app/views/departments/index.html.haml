@@ -23,5 +23,5 @@
             %i.glyphicon.glyphicon-eye-open
           = link_to edit_department_path(department), class: "tag-tooltip", :data => {:toggle=>"tooltip"}, 'data-original-title' => "Edit", 'data-placement' => 'right' do
             %i.glyphicon.glyphicon-pencil
-          = link_to department, class: "tag-tooltip", :data => {:toggle=>"tooltip"}, 'data-original-title' => "Delete", 'data-placement' => 'right', method: :delete, data: { confirm: 'Are you sure you want to delete Department? Once you delete department the tickets related department also deleted?' } do
+          = link_to department, class: "tag-tooltip", :data => {:toggle=>"tooltip"}, 'data-original-title' => "Delete", 'data-placement' => 'right', method: :delete, data: { confirm: ' Are you sure you want to delete this Department? All the tickets related to this deparment will also be deleted !' } do
             %i.glyphicon.glyphicon-remove

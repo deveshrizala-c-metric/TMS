@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :issuesummaries do
+  resources :issue_summaries do
     member do
       get 'restore'
     end
@@ -59,9 +59,6 @@ Rails.application.routes.draw do
 end
   resources :departments, :except => [ :create ] do
   post "create" => "departments#create", :as => :create, :path => 'new', :on => :collection
-end
-  resources :issuesummaries, :except => [ :create ] do
-  post "create" => "issuesummaries#create", :as => :create, :path => 'new', :on => :collection
 end
   resources :posts, only: [:index, :new, :create]
   # The priority is based upon order of creation: first created -> highest priority.

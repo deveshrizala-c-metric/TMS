@@ -1,7 +1,7 @@
 %h1 New Issue Summary
 %br
 
-= form_for @issue_sum, url: create_issuesummaries_path, html: { class: "clientside_validation" } do |f|
+= form_for @issue_sum, url: issue_summaries_path, html: { class: "clientside_validation" } do |f|
   .row
     .form-group
       .col-md-2
@@ -15,4 +15,4 @@
       .actions
         = f.submit "Create", class: 'btn btn-primary'
         = f.button "Reset", type: :reset, class: "btn btn-primary"
-        = link_to "Back", issuesummaries_path , class: 'btn btn-primary button', id: 'back-button'
+        = link_to "Back", issue_summaries_path , class: 'btn btn-primary button', id: 'back-button'
