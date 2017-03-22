@@ -14,23 +14,24 @@ class IssueSummariesController < ApplicationController
   def create
     @issue_sum = IssueSummary.new(issue_summary_params)
 
+    @issue_sum[:name] = @issue_sum[:name].gsub(/\s+/, "")
+
     respond_to do |format|
       if @issue_sum.valid? == false
        flash[:danger] = @issue_sum.errors.full_messages.to_sentence
        format.html { redirect_to new_issue_summary_path }
       else
-        is_sum = IssueSummary.where("name = ?", params[:issue_summary][:name])
-        is_sum_del = IssueSummary.only_deleted.where("name = ?", params[:issue_summary][:name])
+        is_sum = IssueSummary.where("name = ?", @issue_sum[:name])
+        is_sum_del = IssueSummary.only_deleted.where("name = ?", @issue_sum[:name])
 
         if is_sum.present? or is_sum_del.present?
-          flash[:danger] = 'Issue Summary already exist'
+          flash.now[:danger] = 'Issue Summary already exist'
           format.html { render :new }
         else
           if @issue_sum.save
             flash[:success] = 'Issue Summary created successfully'
             format.html { redirect_to issue_summaries_path }
           else
-            exit
             flash[:danger] = 'There is a problem in creating the Issue Summary'
             format.html { redirect_to new_issue_summary_path }
           end

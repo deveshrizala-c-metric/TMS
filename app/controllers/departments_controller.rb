@@ -14,13 +14,15 @@ class DepartmentsController < ApplicationController
   def create
     @department = Department.new(department_params)
 
+    @department[:name] = @department[:name].gsub(/\s+/, "")
+
     respond_to do |format|
       if @department.valid? == false
        flash.now[:danger] = @department.errors.full_messages.to_sentence
        format.html { render :new }
       else
-        dep = Department.where("name = ?", params[:department][:name])
-        dd = Department.only_deleted.where("name = ?", params[:department][:name])
+        dep = Department.where("name = ?", @department[:name])
+        dd = Department.only_deleted.where("name = ?", @department[:name])
 
         if dep.present? or dd.present?
           flash.now[:danger] = 'Department already exist'
