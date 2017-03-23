@@ -14,7 +14,7 @@ class IssueSummariesController < ApplicationController
   def create
     @issue_sum = IssueSummary.new(issue_summary_params)
 
-    @issue_sum[:name] = @issue_sum[:name].gsub(/\s+/, "")
+    @issue_sum[:name] = @issue_sum[:name].strip
 
     respond_to do |format|
       if @issue_sum.valid? == false
