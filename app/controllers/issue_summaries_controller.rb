@@ -21,20 +21,12 @@ class IssueSummariesController < ApplicationController
        flash[:danger] = @issue_sum.errors.full_messages.to_sentence
        format.html { redirect_to new_issue_summary_path }
       else
-        is_sum = IssueSummary.where("name = ?", @issue_sum[:name])
-        is_sum_del = IssueSummary.only_deleted.where("name = ?", @issue_sum[:name])
-
-        if is_sum.present? or is_sum_del.present?
-          flash.now[:danger] = 'Issue Summary already exist'
-          format.html { render :new }
+        if @issue_sum.save
+          flash[:success] = 'Issue Summary created successfully'
+          format.html { redirect_to issue_summaries_path }
         else
-          if @issue_sum.save
-            flash[:success] = 'Issue Summary created successfully'
-            format.html { redirect_to issue_summaries_path }
-          else
-            flash[:danger] = 'There is a problem in creating the Issue Summary'
-            format.html { redirect_to new_issue_summary_path }
-          end
+          flash[:danger] = 'There is a problem in creating the Issue Summary'
+          format.html { redirect_to new_issue_summary_path }
         end
       end
     end

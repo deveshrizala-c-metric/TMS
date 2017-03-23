@@ -14,27 +14,19 @@ class DepartmentsController < ApplicationController
   def create
     @department = Department.new(department_params)
 
-    @department[:name] = @department[:name].gsub(/\s+/, "")
+    @department[:name] = @department[:name].strip
 
     respond_to do |format|
       if @department.valid? == false
        flash.now[:danger] = @department.errors.full_messages.to_sentence
        format.html { render :new }
       else
-        dep = Department.where("name = ?", @department[:name])
-        dd = Department.only_deleted.where("name = ?", @department[:name])
-
-        if dep.present? or dd.present?
-          flash.now[:danger] = 'Department already exist'
-          format.html { render :new }
+        if @department.save
+          flash[:success] = 'Department created successfully'
+          format.html { redirect_to departments_path }
         else
-          if @department.save
-            flash[:success] = 'Department created successfully'
-            format.html { redirect_to departments_path }
-          else
-            flash[:danger] = 'There is a problem in creating the department'
-            format.html { render :new }
-          end
+          flash[:danger] = 'There is a problem in creating the department'
+          format.html { render :new }
         end
       end
     end
