@@ -1,4 +1,4 @@
-class DepartmentsController < ApplicationController
+ class DepartmentsController < ApplicationController
   before_action :authenticate_user!
 
   load_and_authorize_resource
@@ -14,7 +14,7 @@ class DepartmentsController < ApplicationController
   def create
     @department = Department.new(department_params)
 
-    @department[:name] = @department[:name].strip
+    @department[:name] = @department[:name].stripcd
 
     respond_to do |format|
       if @department.valid? == false
@@ -43,9 +43,11 @@ class DepartmentsController < ApplicationController
   def update
     @department = Department.find(params[:id])
 
+    params[:department][:name] = params[:department][:name].strip
+
     respond_to do |format|
-      if @department.update_attributes(department_params)
-        flash[:success] = 'Department updated successfully'
+      if @department.update_attributes(department_params) || !(@department.changed?)
+        flash[:success] = "Department updated successfully"
         format.html { redirect_to @department }
       else
         flash.now[:danger] = @department.errors.full_messages.to_sentence

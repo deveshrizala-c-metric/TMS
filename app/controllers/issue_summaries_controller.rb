@@ -43,10 +43,12 @@ class IssueSummariesController < ApplicationController
   def update
     @issue_sum = IssueSummary.find(params[:id])
 
+    params[:issue_summary][:name] = params[:issue_summary][:name].strip
+
     respond_to do |format|
-      if @issue_sum.update_attributes(issue_summary_params)
-        flash[:success] = 'Issue Summary updated successfully'
-        format.html { redirect_to issue_summary_path }
+      if @issue_sum.update_attributes(issue_summary_params) || !(@issue_sum.changed?)
+        flash[:success] = "Issue Summary updated successfully"
+        format.html { redirect_to @issue_sum }
       else
         flash.now[:danger] = @issue_sum.errors.full_messages.to_sentence
         format.html { render :edit }
@@ -62,7 +64,7 @@ class IssueSummariesController < ApplicationController
         flash[:success] = 'Issue Summary deleted successfully'
         format.html { redirect_to deleted_issue_summaries_path }
       else
-        flash[:danger] = 'There is a problem in deleting the Issue Summary.'
+        flash[:danger] = 'There is a problem in deleting the Issue Summary'
         format.html { redirect_to issue_summaries_path }
       end
     end
