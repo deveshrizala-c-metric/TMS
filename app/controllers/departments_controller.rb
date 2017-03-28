@@ -14,7 +14,7 @@
   def create
     @department = Department.new(department_params)
 
-    @department[:name] = @department[:name].stripcd
+    @department[:name] = @department[:name].strip
 
     respond_to do |format|
       if @department.valid? == false
