@@ -34,21 +34,15 @@ Rails.application.routes.draw do
   end
 
   resources :departments do
-    member do
-      get 'restore'
-    end
-
     collection do
+      get 'restore'
       get 'deleted'
     end
   end
 
   resources :issue_summaries do
-    member do
-      get 'restore'
-    end
-
     collection do
+      get 'restore'
       get 'deleted'
     end
   end
@@ -56,9 +50,6 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :destroy]
   resources :tickets, only: [:index, :new, :show, :destroy], :except => [ :create ] do
   post "create" => "tickets#create", :as => :create, :path => 'new', :on => :collection
-end
-  resources :departments, :except => [ :create ] do
-  post "create" => "departments#create", :as => :create, :path => 'new', :on => :collection
 end
   resources :posts, only: [:index, :new, :create]
   # The priority is based upon order of creation: first created -> highest priority.

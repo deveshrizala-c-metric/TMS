@@ -75,10 +75,8 @@ class IssueSummariesController < ApplicationController
   end
 
   def restore
-    @issue_sum = IssueSummary.only_deleted.find(params[:id])
-
     respond_to do |format|
-      if IssueSummary.restore(@issue_sum.id)
+      if IssueSummary.restore(params[:resource_id])
         flash[:success] = 'Issue Summary restored successfully'
         format.html { redirect_to issue_summaries_path }
       else

@@ -75,10 +75,8 @@
   end
 
   def restore
-    @department = Department.only_deleted.find(params[:id])
-
     respond_to do |format|
-      if Department.restore(@department.id)
+      if Department.restore(params[:resource_id])
         flash[:success] = 'Department restored successfully'
         format.html { redirect_to departments_path }
       else
