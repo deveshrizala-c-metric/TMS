@@ -17,7 +17,7 @@
         %td
           = department.name
         %td
-          = department.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
+          = department.created_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y")
         %td
           = link_to department, class: "tag-tooltip", :data => {:toggle=>"tooltip"}, 'data-original-title' => "View", 'data-placement' => 'right' do
             %i.glyphicon.glyphicon-eye-open

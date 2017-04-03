@@ -26,7 +26,12 @@ $(document).on "turbolinks:load", ->
     $('#myTable').dataTable 'columnDefs': [ {
       'orderable': false
       'targets': -1
+    },
+    {
+      type: 'date-uk'
+      targets: -2
     } ]
+
 
   $ ->
     validator = $('#new_ticket').submit(->

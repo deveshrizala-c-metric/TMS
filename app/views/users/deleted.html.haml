@@ -20,6 +20,6 @@
         %td
           = user.email
         %td
-          = user.deleted_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
+          = user.deleted_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y")
         %td
           = link_to 'Restore', restore_user_path(user), class: 'btn btn-primary button'

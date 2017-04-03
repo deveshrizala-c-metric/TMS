@@ -28,7 +28,7 @@
           %td
             = ticket.user.fullname.blank? ? ticket.user.email : ticket.user.fullname
         %td
-          = ticket.deleted_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
+          = ticket.deleted_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y")
         %td
           -if ticket.user == nil || ticket.department == nil || ticket.issue_summary == nil
             Restore User and / or Department and / or Issue_Summary First.

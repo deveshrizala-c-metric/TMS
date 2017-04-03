@@ -17,6 +17,6 @@
         %td
           = department.name
         %td
-          = department.deleted_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y %H:%M %p")
+          = department.deleted_at.in_time_zone("Asia/Kolkata").strftime("%d/%m/%Y")
         %td
           = link_to 'Restore', restore_departments_path(resource_id: department), class: 'btn btn-primary button'

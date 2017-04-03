@@ -14,6 +14,7 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require jquery.dataTables.js
+//= require date-uk.js
 //= require dataTables.bootstrap.js
 //= require fileinput
 //= require tinymce
