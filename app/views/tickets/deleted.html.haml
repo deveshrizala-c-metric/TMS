@@ -7,6 +7,7 @@
       %th Ticket Id
       %th Department
       %th Issue Summary
+      %th Priority
       %th Status
       -if current_user.has_role? :admin
         %th Created By
@@ -22,6 +23,8 @@
           = ticket.department.nil? ? "N/A" : ticket.department.name
         %td
           = ticket.issue_summary.nil? ? "N/A" : ticket.issue_summary.name
+        %td
+          = ticket.priority
         %td
           = ticket.status
         -if current_user.has_role? :admin

@@ -41,13 +41,9 @@
     .col-md-4
       = @ticket.issue_summary.nil? ? "N/A" : @ticket.issue_summary.name
     .col-md-2
-      %strong Status
+      %strong Priority
     .col-md-4
-      - if current_user.has_role? :admin
-        = f.select :status ,[['Open','Open'],['In progress','In Progress'],['Completed','Completed']]
-        = f.submit "Update", class: 'btn btn-primary button'
-      - else
-        = @ticket.status
+      = @ticket.priority
   %br/
   .row
     .col-md-2
@@ -61,6 +57,16 @@
         = "N/A"
       -else
         = link_to image_tag(@ticket.image.url, class: 'media-object', :style => "height: 50%; width: 100%;"), @ticket.image.url
+  %br
+  .row
+    .col-md-2
+      %strong Status
+    .col-md-4
+      - if current_user.has_role? :admin
+        = f.select :status ,[['Open','Open'],['In progress','In Progress'],['Completed','Completed']]
+        = f.submit "Update", class: 'btn btn-primary button'
+      - else
+        = @ticket.status
 
 %br/
 .row

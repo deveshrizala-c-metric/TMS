@@ -7,6 +7,25 @@ $(document).on 'turbolinks:request-end', ->
     tinyMCE.remove()
   return
 
+fnPriority = (a) ->
+  if a == 'High'
+    return 1
+  else if a == 'Medium'
+    return 2
+  else if a == 'Low'
+    return 3
+  4
+
+jQuery.fn.dataTableExt.oSort['priority-asc'] = (a, b) ->
+  x = fnPriority(a)
+  y = fnPriority(b)
+  if x < y then -1 else if x > y then 1 else 0
+
+jQuery.fn.dataTableExt.oSort['priority-desc'] = (a, b) ->
+  x = fnPriority(a)
+  y = fnPriority(b)
+  if x < y then 1 else if x > y then -1 else 0
+
 $(document).on "turbolinks:load", ->
   locationName = window.location.href.split('/')[3].replace('#','')
   if typeof window.location.href.split('/')[4] != 'undefined'
@@ -23,15 +42,20 @@ $(document).on "turbolinks:load", ->
   $('.tag-tooltip').tooltip()
 
   if $('#myTable').length > 0 and !$('#myTable_wrapper').length > 0
-    $('#myTable').dataTable 'columnDefs': [ {
-      'orderable': false
-      'targets': -1
-    },
-    {
-      type: 'date-uk'
-      targets: -2
-    } ]
-
+    $('#myTable').dataTable
+      'columnDefs': [ {
+          'orderable': false
+          'targets': -1
+        },
+        {
+          sType: 'priority'
+          targets: 3
+        },
+        {
+          type: 'date-uk'
+          targets: -2
+        } ]
+      "aaSorting": [[ 3, "asc" ]]
 
   $ ->
     validator = $('#new_ticket').submit(->

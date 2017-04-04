@@ -53,6 +53,13 @@
       =f.label :image
     .col-md-10
       = f.file_field :image, class: "file image_validation"
+  %br/
+  .row
+    .col-md-2
+      =f.label :priority
+    .col-md-10
+      = f.select :priority, [['Low','Low'],['Medium','Medium'],['High','High']], { :selected => 'Medium' }, { class: "form-control" }
+  %br/
   .row
     .col-md-2
       = f.label :location

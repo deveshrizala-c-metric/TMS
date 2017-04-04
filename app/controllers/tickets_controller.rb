@@ -99,6 +99,6 @@ class TicketsController < ApplicationController
 
   private
   def ticket_params
-    params.require(:ticket).permit(:department_id,:issue_summary_id,:issue_details,:image,:location)
+    params.require(:ticket).permit(:department_id,:issue_summary_id,:issue_details,:image,:priority,:location)
   end
 end

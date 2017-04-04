@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207102633) do
+ActiveRecord::Schema.define(version: 20170403095028) do
 
   create_table "departments", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170207102633) do
     t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
     t.datetime "deleted_at"
+    t.string   "priority",           limit: 255
   end
 
   add_index "tickets", ["deleted_at"], name: "index_tickets_on_deleted_at", using: :btree
