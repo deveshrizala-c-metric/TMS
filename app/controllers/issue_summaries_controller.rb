@@ -46,7 +46,7 @@ class IssueSummariesController < ApplicationController
     params[:issue_summary][:name] = params[:issue_summary][:name].strip
 
     respond_to do |format|
-      if @issue_sum.update_attributes(issue_summary_params) || !(@issue_sum.changed?)
+      if @issue_sum.update_attributes(issue_summary_params)
         flash[:success] = "Issue Summary updated successfully"
         format.html { redirect_to @issue_sum }
       else

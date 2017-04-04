@@ -7,6 +7,6 @@ class IssueSummary < ActiveRecord::Base
   validate :unique_name, on: [:create, :update]
 
   def unique_name
-    errors.add :name, 'has already been taken' if IssueSummary.with_deleted.where(name: self.name).exists?
+    errors.add :name, 'has already been taken' if IssueSummary.with_deleted.where(name: self.name).exists? && self.changed? && self.name.downcase != self.name_was.try(:downcase)
   end
 end

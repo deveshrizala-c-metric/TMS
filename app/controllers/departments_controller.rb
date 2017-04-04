@@ -46,7 +46,7 @@
     params[:department][:name] = params[:department][:name].strip
 
     respond_to do |format|
-      if @department.update_attributes(department_params) || !(@department.changed?)
+      if @department.update_attributes(department_params)
         flash[:success] = "Department updated successfully"
         format.html { redirect_to @department }
       else
