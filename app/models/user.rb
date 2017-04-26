@@ -12,4 +12,11 @@ class User < ActiveRecord::Base
 
   validates :fullname, length: { maximum: 30 }
   validates :phone, length: { maximum: 15 }, numericality: true, allow_blank: true
+
+  def self.current
+    Thread.current[:user]
+  end
+  def self.current=(user)
+    Thread.current[:user] = user
+  end
 end

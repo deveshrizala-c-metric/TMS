@@ -8,6 +8,13 @@ class TicketsController < ApplicationController
     else
       @tickets = Ticket.where("user_id = ? ", current_user.id)
     end
+
+    @final_tickets = @tickets.filter_tickets_by_status(params[:activetab])
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => {data: @final_tickets} }
+    end
   end
 
   def new
@@ -61,7 +68,7 @@ class TicketsController < ApplicationController
     respond_to do |format|
       if @ticket.destroy
         flash[:success] = 'Ticket deleted successfully'
-        format.html { redirect_to deleted_tickets_path }
+        format.html { redirect_to tickets_path }
       else
         flash[:danger] = 'There is a problem in deleting the ticket.'
         format.html { redirect_to tickets_path }
@@ -80,6 +87,13 @@ class TicketsController < ApplicationController
       @tickets = Ticket.only_deleted
     else
       @tickets = Ticket.only_deleted.where("user_id = ? ", current_user.id)
+    end
+
+    @final_tickets = @tickets.filter_deleted_tickets_by_status(params[:activetab])
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => {data: @final_tickets} }
     end
   end
 

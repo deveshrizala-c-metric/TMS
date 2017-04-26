@@ -1,0 +1,13 @@
+%div
+  %ul.nav.nav-tabs{:id => "#myTabs", :role => "tablist"}
+    %li.active{:role => "presentation"}
+      %a{"aria-controls" => "Open", "data-toggle" => "tab", "data-tab" => "Open", :href => "#open", :role => "tab"} Open
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "Inprogress", "data-toggle" => "tab", "data-tab" => "In Progress", :href => "#inprogress", :role => "tab"} In Progress
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "Completed", "data-toggle" => "tab", "data-tab" => "Completed", :href => "#completed", :role => "tab"} Completed
+
+  #myTabContent.tab-content
+    #open.tab-pane.fade.in.active{:role => "tabpanel"}
+    #inprogress.tab-pane.fade{:role => "tabpanel"}
+    #completed.tab-pane.fade{:role => "tabpanel"}
